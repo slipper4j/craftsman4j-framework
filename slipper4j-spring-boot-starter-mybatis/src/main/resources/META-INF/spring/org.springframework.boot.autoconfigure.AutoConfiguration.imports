@@ -1,0 +1,2 @@
+com.slipper4j.framework.datasource.config.DataSourceAutoConfiguration
+com.slipper4j.framework.mybatis.config.MybatisAutoConfiguration

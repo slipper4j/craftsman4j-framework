@@ -1,0 +1,2 @@
+com.slipper4j.framework.idempotent.config.IdempotentConfiguration
+com.slipper4j.framework.lock4j.config.Lock4jConfiguration

@@ -1,0 +1,6 @@
+com.slipper4j.framework.apilog.config.ApiLogAutoConfiguration
+com.slipper4j.framework.jackson.config.JacksonAutoConfiguration
+com.slipper4j.framework.swagger.config.SwaggerAutoConfiguration
+com.slipper4j.framework.web.config.WebAutoConfiguration
+com.slipper4j.framework.xss.config.XssAutoConfiguration
+com.slipper4j.framework.banner.config.BannerAutoConfiguration
