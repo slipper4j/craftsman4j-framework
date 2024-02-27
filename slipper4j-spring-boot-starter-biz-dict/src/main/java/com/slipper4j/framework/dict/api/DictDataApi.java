@@ -5,7 +5,7 @@ import com.slipper4j.framework.dict.api.dto.DictDataRespDTO;
 /**
  * 字典数据 API 接口
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public interface DictDataApi {
 

@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * 时间工具类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class DateUtils {
 

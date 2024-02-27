@@ -11,7 +11,7 @@ import static com.slipper4j.framework.web.core.util.WebFrameworkUtils.HEADER_TEN
  *
  * Producer 发送消息时，将 {@link TenantContextHolder} 租户编号，添加到消息的 Header 中
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class TenantRocketMQSendMessageHook implements SendMessageHook {
 

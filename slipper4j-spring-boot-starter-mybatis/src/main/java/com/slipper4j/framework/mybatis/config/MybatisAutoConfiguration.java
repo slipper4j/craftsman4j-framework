@@ -18,7 +18,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 /**
  * MyBaits 配置类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @AutoConfiguration
 @MapperScan(value = "${slipper4j.info.base-package}", annotationClass = Mapper.class,

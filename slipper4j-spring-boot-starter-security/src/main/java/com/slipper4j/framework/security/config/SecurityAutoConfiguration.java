@@ -1,5 +1,6 @@
 package com.slipper4j.framework.security.config;
 
+import com.slipper4j.framework.security.api.UserTokenApi;
 import com.slipper4j.framework.security.core.aop.PreAuthenticatedAspect;
 import com.slipper4j.framework.security.api.PermissionApi;
 import com.slipper4j.framework.security.core.context.TransmittableThreadLocalSecurityContextHolderStrategy;
@@ -27,7 +28,7 @@ import javax.annotation.Resource;
  * 注意，不能和 {@link WebSecurityConfigurerAdapter} 用一个，原因是会导致初始化报错。
  * 参见 https://stackoverflow.com/questions/53847050/spring-boot-delegatebuilder-cannot-be-null-on-autowiring-authenticationmanager 文档。
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @AutoConfiguration
 @EnableConfigurationProperties(SecurityProperties.class)
@@ -75,8 +76,9 @@ public class SecurityAutoConfiguration {
      * Token 认证过滤器 Bean
      */
     @Bean
-    public TokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler) {
-        return new TokenAuthenticationFilter(securityProperties, globalExceptionHandler);
+    public TokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler,
+                                                               UserTokenApi userTokenApi) {
+        return new TokenAuthenticationFilter(securityProperties, globalExceptionHandler, userTokenApi);
     }
 
     @Bean("ss") // 使用 Spring Security 的缩写，方便使用

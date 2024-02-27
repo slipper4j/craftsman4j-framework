@@ -7,7 +7,7 @@ import lombok.SneakyThrows;
 /**
  * 数据权限 Util
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class DataPermissionUtils {
 

@@ -5,7 +5,7 @@ import com.slipper4j.framework.file.core.client.s3.FilePresignedUrlRespDTO;
 /**
  * 文件客户端
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public interface FileClient {
 

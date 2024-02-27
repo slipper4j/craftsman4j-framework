@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * 文件配置类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @AutoConfiguration
 public class FileAutoConfiguration {

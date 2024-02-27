@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 /**
  * 校验工具类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class ValidationUtils {
 

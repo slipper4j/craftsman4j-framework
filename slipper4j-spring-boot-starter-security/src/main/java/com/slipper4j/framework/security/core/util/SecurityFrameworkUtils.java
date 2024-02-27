@@ -1,7 +1,7 @@
 package com.slipper4j.framework.security.core.util;
 
 import cn.hutool.core.util.StrUtil;
-import com.slipper4j.framework.security.core.LoginUser;
+import com.slipper4j.framework.security.core.ILoginUser;
 import com.slipper4j.framework.web.core.util.WebFrameworkUtils;
 import org.springframework.lang.Nullable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -9,7 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
@@ -17,7 +16,7 @@ import java.util.Collections;
 /**
  * 安全服务工具类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class SecurityFrameworkUtils {
 
@@ -26,13 +25,14 @@ public class SecurityFrameworkUtils {
      */
     public static final String AUTHORIZATION_BEARER = "Bearer";
 
-    private SecurityFrameworkUtils() {}
+    private SecurityFrameworkUtils() {
+    }
 
     /**
      * 从请求中，获得认证 Token
      *
-     * @param request 请求
-     * @param headerName 认证 Token 对应的 Header 名字
+     * @param request       请求
+     * @param headerName    认证 Token 对应的 Header 名字
      * @param parameterName 认证 Token 对应的 Parameter 名字
      * @return 认证 Token
      */
@@ -43,7 +43,7 @@ public class SecurityFrameworkUtils {
         if (StrUtil.isEmpty(token)) {
             token = request.getParameter(parameterName);
         }
-        if (!StringUtils.hasText(token)) {
+        if (StrUtil.isEmpty(token)) {
             return null;
         }
         // 2. 去除 Token 中带的 Bearer
@@ -70,12 +70,12 @@ public class SecurityFrameworkUtils {
      * @return 当前用户
      */
     @Nullable
-    public static LoginUser getLoginUser() {
+    public static ILoginUser getLoginUser() {
         Authentication authentication = getAuthentication();
         if (authentication == null) {
             return null;
         }
-        return authentication.getPrincipal() instanceof LoginUser ? (LoginUser) authentication.getPrincipal() : null;
+        return authentication.getPrincipal() instanceof ILoginUser ? (ILoginUser) authentication.getPrincipal() : null;
     }
 
     /**
@@ -85,7 +85,7 @@ public class SecurityFrameworkUtils {
      */
     @Nullable
     public static Long getLoginUserId() {
-        LoginUser loginUser = getLoginUser();
+        ILoginUser loginUser = getLoginUser();
         return loginUser != null ? loginUser.getId() : null;
     }
 
@@ -93,9 +93,9 @@ public class SecurityFrameworkUtils {
      * 设置当前用户
      *
      * @param loginUser 登录用户
-     * @param request 请求
+     * @param request   请求
      */
-    public static void setLoginUser(LoginUser loginUser, HttpServletRequest request) {
+    public static void setLoginUser(ILoginUser loginUser, HttpServletRequest request) {
         // 创建 Authentication，并设置到上下文
         Authentication authentication = buildAuthentication(loginUser, request);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -106,7 +106,7 @@ public class SecurityFrameworkUtils {
         WebFrameworkUtils.setLoginUserType(request, loginUser.getUserType());
     }
 
-    private static Authentication buildAuthentication(LoginUser loginUser, HttpServletRequest request) {
+    private static Authentication buildAuthentication(ILoginUser loginUser, HttpServletRequest request) {
         // 创建 UsernamePasswordAuthenticationToken 对象
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 loginUser, null, Collections.emptyList());

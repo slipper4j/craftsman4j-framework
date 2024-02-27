@@ -38,17 +38,14 @@
         <module>slipper4j-spring-boot-starter-mq</module>
 
         <module>slipper4j-spring-boot-starter-excel</module>
-        <module>slipper4j-spring-boot-starter-test</module>
 
         <module>slipper4j-spring-boot-starter-biz-operatelog</module>
         <module>slipper4j-spring-boot-starter-biz-dict</module>
 
-        <module>slipper4j-spring-boot-starter-biz-pay</module>
         <module>slipper4j-spring-boot-starter-biz-tenant</module>
         <module>slipper4j-spring-boot-starter-biz-data-permission</module>
         <module>slipper4j-spring-boot-starter-biz-ip</module>
 
-        <module>slipper4j-spring-boot-starter-flowable</module>
         <module>slipper4j-spring-boot-starter-captcha</module>
         <module>slipper4j-spring-boot-starter-websocket</module>
     </modules>

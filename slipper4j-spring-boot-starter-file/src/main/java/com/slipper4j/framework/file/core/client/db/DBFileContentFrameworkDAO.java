@@ -3,7 +3,7 @@ package com.slipper4j.framework.file.core.client.db;
 /**
  * 文件内容 Framework DAO 接口
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public interface DBFileContentFrameworkDAO {
 

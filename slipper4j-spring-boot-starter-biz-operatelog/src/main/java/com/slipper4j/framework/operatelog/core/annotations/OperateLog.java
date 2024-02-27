@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 /**
  * 操作日志注解
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

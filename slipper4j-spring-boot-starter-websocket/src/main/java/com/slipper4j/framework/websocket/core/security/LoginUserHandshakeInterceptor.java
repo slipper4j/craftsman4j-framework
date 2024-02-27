@@ -1,6 +1,6 @@
 package com.slipper4j.framework.websocket.core.security;
 
-import com.slipper4j.framework.security.core.LoginUser;
+import com.slipper4j.framework.security.core.ILoginUser;
 import com.slipper4j.framework.security.core.filter.TokenAuthenticationFilter;
 import com.slipper4j.framework.security.core.util.SecurityFrameworkUtils;
 import com.slipper4j.framework.websocket.core.util.WebSocketFrameworkUtils;
@@ -17,16 +17,16 @@ import java.util.Map;
  *
  * 流程如下：
  * 1. 前端连接 websocket 时，会通过拼接 ?token={token} 到 ws:// 连接后，这样它可以被 {@link TokenAuthenticationFilter} 所认证通过
- * 2. {@link LoginUserHandshakeInterceptor} 负责把 {@link LoginUser} 添加到 {@link WebSocketSession} 中
+ * 2. {@link LoginUserHandshakeInterceptor} 负责把 {@link ILoginUser} 添加到 {@link WebSocketSession} 中
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class LoginUserHandshakeInterceptor implements HandshakeInterceptor {
 
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response,
                                    WebSocketHandler wsHandler, Map<String, Object> attributes) {
-        LoginUser loginUser = SecurityFrameworkUtils.getLoginUser();
+        ILoginUser loginUser = SecurityFrameworkUtils.getLoginUser();
         if (loginUser != null) {
             WebSocketFrameworkUtils.setLoginUser(loginUser, attributes);
         }

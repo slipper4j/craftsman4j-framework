@@ -48,7 +48,7 @@ import static com.slipper4j.framework.common.exception.enums.GlobalErrorCodeCons
  * <p>
  * 但是，如果声明 @OperateLog 注解时，将 enable 属性设置为 false 时，强制不记录。
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @Aspect
 @Slf4j
@@ -88,12 +88,6 @@ public class OperateLogAspect {
     private Object around0(ProceedingJoinPoint joinPoint,
                            com.slipper4j.framework.operatelog.core.annotations.OperateLog operateLog,
                            Operation operation) throws Throwable {
-        // 目前，只有管理员，才记录操作日志！所以非管理员，直接调用，不进行记录
-        Integer userType = WebFrameworkUtils.getLoginUserType();
-        if (!Objects.equals(userType, UserTypeEnum.ADMIN.getValue())) {
-            return joinPoint.proceed();
-        }
-
         // 记录开始时间
         LocalDateTime startTime = LocalDateTime.now();
         try {

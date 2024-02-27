@@ -22,7 +22,7 @@ import static com.slipper4j.framework.common.exception.enums.GlobalErrorCodeCons
  *
  * 补充：Spring Security 通过 {@link ExceptionTranslationFilter#handleAccessDeniedException(HttpServletRequest, HttpServletResponse, FilterChain, AccessDeniedException)} 方法，调用当前类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @Slf4j
 @SuppressWarnings("JavadocReference")

@@ -6,7 +6,7 @@ import com.slipper4j.framework.file.core.client.AbstractFileClient;
 /**
  * 基于 DB 存储的文件客户端的配置类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class DBFileClient extends AbstractFileClient<DBFileClientConfig> {
 

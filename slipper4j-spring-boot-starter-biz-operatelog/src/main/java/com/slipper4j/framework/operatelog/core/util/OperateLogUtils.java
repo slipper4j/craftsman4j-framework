@@ -6,7 +6,7 @@ import com.slipper4j.framework.operatelog.core.aop.OperateLogAspect;
  * 操作日志工具类
  * 目前主要的作用，是提供给业务代码，记录操作明细和拓展字段
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class OperateLogUtils {
 

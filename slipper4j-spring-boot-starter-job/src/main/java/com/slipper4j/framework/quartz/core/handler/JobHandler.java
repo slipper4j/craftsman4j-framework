@@ -3,7 +3,7 @@ package com.slipper4j.framework.quartz.core.handler;
 /**
  * 任务处理器
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public interface JobHandler {
 

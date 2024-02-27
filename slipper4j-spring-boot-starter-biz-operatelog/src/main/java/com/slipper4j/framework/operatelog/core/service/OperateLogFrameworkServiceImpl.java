@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.Async;
  * <p>
  * 基于 {@link ApplicationEventPublisher} 实现，记录操作日志
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @RequiredArgsConstructor
 public class OperateLogFrameworkServiceImpl implements OperateLogFrameworkService {

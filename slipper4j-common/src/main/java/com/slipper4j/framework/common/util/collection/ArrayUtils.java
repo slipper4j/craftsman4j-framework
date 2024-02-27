@@ -13,7 +13,7 @@ import static com.slipper4j.framework.common.util.collection.CollectionUtils.con
 /**
  * Array 工具类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class ArrayUtils {
 

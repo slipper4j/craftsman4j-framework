@@ -5,7 +5,7 @@ import com.slipper4j.framework.common.util.json.JsonUtils;
 /**
  * WebSocket 消息的发送器接口
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public interface WebSocketMessageSender {
 

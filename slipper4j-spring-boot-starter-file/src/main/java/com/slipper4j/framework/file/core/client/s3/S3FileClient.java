@@ -18,7 +18,7 @@ import static com.slipper4j.framework.file.core.client.s3.S3FileClientConfig.END
  * <p>
  * S3 协议的客户端，采用亚马逊提供的 software.amazon.awssdk.s3 库
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class S3FileClient extends AbstractFileClient<S3FileClientConfig> {
 

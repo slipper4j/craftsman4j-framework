@@ -1,7 +1,7 @@
 package com.slipper4j.framework.websocket.core.session;
 
 import cn.hutool.core.collection.CollUtil;
-import com.slipper4j.framework.security.core.LoginUser;
+import com.slipper4j.framework.security.core.ILoginUser;
 import com.slipper4j.framework.tenant.core.context.TenantContextHolder;
 import com.slipper4j.framework.websocket.core.util.WebSocketFrameworkUtils;
 import org.springframework.web.socket.WebSocketSession;
@@ -17,7 +17,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 /**
  * 默认的 {@link WebSocketSessionManager} 实现类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class WebSocketSessionManagerImpl implements WebSocketSessionManager {
 
@@ -42,7 +42,7 @@ public class WebSocketSessionManagerImpl implements WebSocketSessionManager {
         // 添加到 idSessions 中
         idSessions.put(session.getId(), session);
         // 添加到 userSessions 中
-        LoginUser user = WebSocketFrameworkUtils.getLoginUser(session);
+        ILoginUser user = WebSocketFrameworkUtils.getLoginUser(session);
         if (user == null) {
             return;
         }
@@ -68,7 +68,7 @@ public class WebSocketSessionManagerImpl implements WebSocketSessionManager {
         // 移除从 idSessions 中
         idSessions.remove(session.getId());
         // 移除从 idSessions 中
-        LoginUser user = WebSocketFrameworkUtils.getLoginUser(session);
+        ILoginUser user = WebSocketFrameworkUtils.getLoginUser(session);
         if (user == null) {
             return;
         }

@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Async;
  * <p>
  * 基于 {@link } 服务，记录错误日志
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @RequiredArgsConstructor
 public class ApiErrorLogFrameworkServiceImpl implements ApiErrorLogFrameworkService {

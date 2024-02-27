@@ -21,7 +21,7 @@ import static com.slipper4j.framework.common.util.collection.CollectionUtils.con
 /**
  * 区域工具类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @Slf4j
 public class AreaUtils {

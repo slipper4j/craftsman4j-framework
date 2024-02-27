@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 /**
  *  Request Body 缓存 Wrapper
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class CacheRequestBodyWrapper extends HttpServletRequestWrapper {
 

@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * 链路追踪 Util
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class TracerFrameworkUtils {
 

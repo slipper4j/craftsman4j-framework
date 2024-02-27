@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Xss 过滤器
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @AllArgsConstructor
 public class XssFilter extends OncePerRequestFilter {

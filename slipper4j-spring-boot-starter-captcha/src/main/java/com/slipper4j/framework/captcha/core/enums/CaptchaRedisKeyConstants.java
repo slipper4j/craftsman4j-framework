@@ -3,7 +3,7 @@ package com.slipper4j.framework.captcha.core.enums;
 /**
  * 验证码 Redis Key 枚举类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public interface CaptchaRedisKeyConstants {
 

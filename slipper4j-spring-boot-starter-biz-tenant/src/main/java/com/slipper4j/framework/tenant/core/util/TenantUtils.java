@@ -10,7 +10,7 @@ import static com.slipper4j.framework.web.core.util.WebFrameworkUtils.HEADER_TEN
 /**
  * 多租户 Util
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class TenantUtils {
 

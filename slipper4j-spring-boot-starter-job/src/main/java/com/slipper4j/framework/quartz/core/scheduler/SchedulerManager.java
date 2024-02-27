@@ -16,7 +16,7 @@ import static com.slipper4j.framework.common.exception.util.ServiceExceptionUtil
  *
  * 另外，jobHandlerName 对应到 Spring Bean 的名字，直接调用
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class SchedulerManager {
 

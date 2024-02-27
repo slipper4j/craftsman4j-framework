@@ -28,7 +28,7 @@ import static com.slipper4j.framework.common.util.json.JsonUtils.toJsonString;
 /**
  * API 访问日志 Filter
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @Slf4j
 public class ApiAccessLogFilter extends ApiRequestFilter {

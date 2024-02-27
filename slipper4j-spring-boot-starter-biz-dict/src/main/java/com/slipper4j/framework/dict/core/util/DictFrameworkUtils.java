@@ -15,7 +15,7 @@ import java.time.Duration;
 /**
  * 字典工具类
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @Slf4j
 public class DictFrameworkUtils {

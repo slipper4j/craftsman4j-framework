@@ -1,15 +1,18 @@
 package com.slipper4j.framework.security.core.filter;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.slipper4j.framework.common.exception.ServiceException;
 import com.slipper4j.framework.common.pojo.CommonResult;
 import com.slipper4j.framework.common.util.servlet.ServletUtils;
+import com.slipper4j.framework.security.api.UserTokenApi;
 import com.slipper4j.framework.security.config.SecurityProperties;
-import com.slipper4j.framework.security.core.LoginUser;
+import com.slipper4j.framework.security.core.ILoginUser;
 import com.slipper4j.framework.security.core.util.SecurityFrameworkUtils;
 import com.slipper4j.framework.web.core.handler.GlobalExceptionHandler;
 import com.slipper4j.framework.web.core.util.WebFrameworkUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -17,12 +20,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * Token 过滤器，验证 token 的有效性
- * 验证通过后，获得 {@link LoginUser} 信息，并加入到 Spring Security 上下文
+ * 验证通过后，获得 {@link ILoginUser} 信息，并加入到 Spring Security 上下文
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @RequiredArgsConstructor
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
@@ -30,6 +34,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     private final SecurityProperties securityProperties;
 
     private final GlobalExceptionHandler globalExceptionHandler;
+
+    private final UserTokenApi userTokenApi;
 
     @Override
     @SuppressWarnings("NullableProblems")
@@ -41,7 +47,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             Integer userType = WebFrameworkUtils.getLoginUserType(request);
             try {
                 // 1.1 基于 token 构建登录用户
-                LoginUser loginUser = buildLoginUserByToken(token, userType);
+                ILoginUser loginUser = buildLoginUserByToken(token, userType);
                 // 1.2 模拟 Login 功能，方便日常开发调试
                 if (loginUser == null) {
                     loginUser = mockLoginUser(request, token, userType);
@@ -62,23 +68,21 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         chain.doFilter(request, response);
     }
 
-    private LoginUser buildLoginUserByToken(String token, Integer userType) {
+    private ILoginUser buildLoginUserByToken(String token, Integer userType) {
         try {
-            //OAuth2AccessTokenCheckRespDTO accessToken = oauth2TokenApi.checkAccessToken(token);
-            //if (accessToken == null) {
-            //    return null;
-            //}
-            //// 用户类型不匹配，无权限
-            //// 注意：只有 /admin-api/* 和 /app-api/* 有 userType，才需要比对用户类型
-            //// 类似 WebSocket 的 /ws/* 连接地址，是不需要比对用户类型的
-            //if (userType != null
-            //        && ObjectUtil.notEqual(accessToken.getUserType(), userType)) {
-            //    throw new AccessDeniedException("错误的用户类型");
-            //}
-            //// 构建登录用户
-            //return new LoginUser().setId(accessToken.getUserId()).setUserType(accessToken.getUserType())
-            //        .setTenantId(accessToken.getTenantId()).setScopes(accessToken.getScopes());
-            return new LoginUser();
+            ILoginUser loginUser = userTokenApi.getLoginUser(token);
+            if (loginUser == null) {
+                return null;
+            }
+            // 用户类型不匹配，无权限
+            // 注意：只有 /admin-api/* 和 /app-api/* 有 userType，才需要比对用户类型
+            // 类似 WebSocket 的 /ws/* 连接地址，是不需要比对用户类型的
+            if (userType != null
+                    && ObjectUtil.notEqual(loginUser.getUserType(), userType)) {
+                throw new AccessDeniedException("错误的用户类型");
+            }
+            // 构建登录用户
+            return loginUser;
         } catch (ServiceException serviceException) {
             // 校验 Token 不通过时，考虑到一些接口是无需登录的，所以直接返回 null 即可
             return null;
@@ -95,7 +99,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
      * @param userType 用户类型
      * @return 模拟的 LoginUser
      */
-    private LoginUser mockLoginUser(HttpServletRequest request, String token, Integer userType) {
+    private ILoginUser mockLoginUser(HttpServletRequest request, String token, Integer userType) {
         if (!securityProperties.getMockEnable()) {
             return null;
         }
@@ -105,8 +109,27 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         }
         // 构建模拟用户
         Long userId = Long.valueOf(token.substring(securityProperties.getMockSecret().length()));
-        return new LoginUser().setId(userId).setUserType(userType)
-                .setTenantId(WebFrameworkUtils.getTenantId(request));
+        return new ILoginUser() {
+            @Override
+            public Long getId() {
+                return userId;
+            }
+
+            @Override
+            public Integer getUserType() {
+                return userType;
+            }
+
+            @Override
+            public Set<String> getPermissions() {
+                return null;
+            }
+
+            @Override
+            public Long getTenantId() {
+                return WebFrameworkUtils.getTenantId(request);
+            }
+        };
     }
 
 }

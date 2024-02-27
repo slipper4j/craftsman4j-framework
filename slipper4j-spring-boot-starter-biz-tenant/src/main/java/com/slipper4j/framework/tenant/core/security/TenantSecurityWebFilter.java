@@ -4,7 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.slipper4j.framework.common.exception.enums.GlobalErrorCodeConstants;
 import com.slipper4j.framework.common.pojo.CommonResult;
 import com.slipper4j.framework.common.util.servlet.ServletUtils;
-import com.slipper4j.framework.security.core.LoginUser;
+import com.slipper4j.framework.security.core.ILoginUser;
 import com.slipper4j.framework.security.core.util.SecurityFrameworkUtils;
 import com.slipper4j.framework.tenant.config.TenantProperties;
 import com.slipper4j.framework.tenant.core.context.TenantContextHolder;
@@ -28,7 +28,7 @@ import java.util.Objects;
  * 2. 如果请求未带租户的编号，检查是否是忽略的 URL，否则也不允许访问。
  * 3. 校验租户是合法，例如说被禁用、到期
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @Slf4j
 public class TenantSecurityWebFilter extends ApiRequestFilter {
@@ -56,7 +56,7 @@ public class TenantSecurityWebFilter extends ApiRequestFilter {
             throws ServletException, IOException {
         Long tenantId = TenantContextHolder.getTenantId();
         // 1. 登陆的用户，校验是否有权限访问该租户，避免越权问题。
-        LoginUser user = SecurityFrameworkUtils.getLoginUser();
+        ILoginUser user = SecurityFrameworkUtils.getLoginUser();
         if (user != null) {
             // 如果获取不到租户编号，则尝试使用登陆用户的租户编号
             if (tenantId == null) {

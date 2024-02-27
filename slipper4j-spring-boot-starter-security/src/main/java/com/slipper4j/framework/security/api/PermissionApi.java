@@ -3,7 +3,7 @@ package com.slipper4j.framework.security.api;
 /**
  * 权限 API 接口
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public interface PermissionApi {
 

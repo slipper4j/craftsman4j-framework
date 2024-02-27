@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 /**
  * 数字的工具类，补全 {@link cn.hutool.core.util.NumberUtil} 的功能
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 public class NumberUtils {
 

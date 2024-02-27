@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * 多租户配置
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @ConfigurationProperties(prefix = "slipper4j.tenant")
 @Data

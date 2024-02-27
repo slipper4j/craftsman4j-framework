@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 操作日志
  *
- * @author 芋道源码
+ * @author slipper4j
  */
 @Data
 public class OperateLog {
