@@ -1,1 +1,6 @@
 com.slipper4j.framework.limiter.config.LimiterAutoConfiguration
+com.slipper4j.framework.limiter.core.redis.FixWindowRedisRateLimiter
+com.slipper4j.framework.limiter.core.redis.LeakyBucketRedisRateLimiter
+com.slipper4j.framework.limiter.core.redis.SlidingLogRedisRateLimiter
+com.slipper4j.framework.limiter.core.redis.SlidingWindowRedisRateLimiter
+com.slipper4j.framework.limiter.core.redis.TokenBucketRedisRateLimiter

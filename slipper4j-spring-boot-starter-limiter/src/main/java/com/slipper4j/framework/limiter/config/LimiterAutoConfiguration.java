@@ -1,6 +1,6 @@
 package com.slipper4j.framework.limiter.config;
 
-import com.slipper4j.framework.limiter.DefaultRateLimiterContext;
+import com.slipper4j.framework.limiter.core.DefaultRateLimiterContext;
 import com.slipper4j.framework.limiter.core.RateLimiterContext;
 import com.slipper4j.framework.limiter.core.RateLimiterKeyGenerate;
 import com.slipper4j.framework.limiter.core.interceptor.RateLimitInterceptor;

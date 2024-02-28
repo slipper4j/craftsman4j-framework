@@ -1,4 +1,4 @@
-package com.slipper4j.framework.limiter;
+package com.slipper4j.framework.limiter.core;
 
 import com.slipper4j.framework.limiter.core.RateLimiterContext;
 import com.slipper4j.framework.limiter.core.RateLimiterProvider;
