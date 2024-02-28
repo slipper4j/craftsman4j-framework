@@ -1,4 +1,4 @@
-package com.slipper4j.framework.limiter.key;
+package com.slipper4j.framework.limiter.core.key;
 
 import com.slipper4j.framework.limiter.core.RateLimiterKeyGenerate;
 import com.slipper4j.framework.web.core.util.WebFrameworkUtils;

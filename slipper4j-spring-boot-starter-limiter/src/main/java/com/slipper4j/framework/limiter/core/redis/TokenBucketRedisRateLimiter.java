@@ -1,4 +1,4 @@
-package com.slipper4j.framework.limiter.redis;
+package com.slipper4j.framework.limiter.core.redis;
 
 import com.slipper4j.framework.limiter.core.constant.LimiterType;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -9,20 +9,19 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * @author andanyang
  * @since 2023/5/11 13:39
  */
-public class SlidingLogRedisRateLimiter extends AbstractApiRedisRateLimiter {
+public class TokenBucketRedisRateLimiter extends AbstractApiRedisRateLimiter {
 
-
-    public SlidingLogRedisRateLimiter(StringRedisTemplate stringRedisTemplate) {
+    public TokenBucketRedisRateLimiter(StringRedisTemplate stringRedisTemplate) {
         super(stringRedisTemplate);
     }
 
     @Override
     public LimiterType support() {
-        return LimiterType.SLIDING_LOG;
+        return LimiterType.TOKEN_BUCKET;
     }
 
     @Override
     protected String getScriptName() {
-        return "rateLimiter/SlidingLog.lua";
+        return "rateLimiter/TokenBucket.lua";
     }
 }

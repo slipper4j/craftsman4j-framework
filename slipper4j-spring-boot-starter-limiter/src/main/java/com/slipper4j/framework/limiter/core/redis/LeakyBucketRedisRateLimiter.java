@@ -1,4 +1,4 @@
-package com.slipper4j.framework.limiter.redis;
+package com.slipper4j.framework.limiter.core.redis;
 
 import com.slipper4j.framework.limiter.core.constant.LimiterType;
 import org.springframework.data.redis.core.StringRedisTemplate;

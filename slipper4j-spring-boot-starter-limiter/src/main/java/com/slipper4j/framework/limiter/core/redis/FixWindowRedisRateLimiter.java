@@ -1,6 +1,7 @@
-package com.slipper4j.framework.limiter.redis;
+package com.slipper4j.framework.limiter.core.redis;
 
 import com.slipper4j.framework.limiter.core.constant.LimiterType;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
@@ -9,19 +10,21 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * @author andanyang
  * @since 2023/5/11 13:39
  */
-public class TokenBucketRedisRateLimiter extends AbstractApiRedisRateLimiter {
+@Configuration
+public class FixWindowRedisRateLimiter extends AbstractApiRedisRateLimiter {
 
-    public TokenBucketRedisRateLimiter(StringRedisTemplate stringRedisTemplate) {
+
+    public FixWindowRedisRateLimiter(StringRedisTemplate stringRedisTemplate) {
         super(stringRedisTemplate);
     }
 
     @Override
     public LimiterType support() {
-        return LimiterType.TOKEN_BUCKET;
+        return LimiterType.FIX_WINDOW;
     }
 
     @Override
     protected String getScriptName() {
-        return "rateLimiter/TokenBucket.lua";
+        return "rateLimiter/FixWindow.lua";
     }
 }
