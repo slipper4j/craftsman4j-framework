@@ -1,4 +1,4 @@
-package com.slipper4j.framework.tenant.api;
+package com.slipper4j.framework.tenant.core;
 
 import java.util.List;
 

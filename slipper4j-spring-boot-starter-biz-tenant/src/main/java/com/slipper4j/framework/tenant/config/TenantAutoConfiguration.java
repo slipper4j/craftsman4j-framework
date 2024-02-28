@@ -3,7 +3,7 @@ package com.slipper4j.framework.tenant.config;
 import com.slipper4j.framework.common.enums.WebFilterOrderEnum;
 import com.slipper4j.framework.mybatis.core.util.MyBatisUtils;
 import com.slipper4j.framework.redis.config.CacheProperties;
-import com.slipper4j.framework.tenant.api.TenantApi;
+import com.slipper4j.framework.tenant.core.TenantApi;
 import com.slipper4j.framework.tenant.core.aop.TenantIgnoreAspect;
 import com.slipper4j.framework.tenant.core.db.TenantDatabaseInterceptor;
 import com.slipper4j.framework.tenant.core.job.TenantJobAspect;

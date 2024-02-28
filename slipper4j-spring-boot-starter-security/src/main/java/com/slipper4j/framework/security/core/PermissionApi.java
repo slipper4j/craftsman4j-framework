@@ -1,4 +1,4 @@
-package com.slipper4j.framework.security.api;
+package com.slipper4j.framework.security.core;
 
 /**
  * 权限 API 接口

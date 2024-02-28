@@ -5,7 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.slipper4j.framework.common.exception.ServiceException;
 import com.slipper4j.framework.common.pojo.CommonResult;
 import com.slipper4j.framework.common.util.servlet.ServletUtils;
-import com.slipper4j.framework.security.api.UserTokenApi;
+import com.slipper4j.framework.security.core.UserTokenApi;
 import com.slipper4j.framework.security.config.SecurityProperties;
 import com.slipper4j.framework.security.core.ILoginUser;
 import com.slipper4j.framework.security.core.util.SecurityFrameworkUtils;

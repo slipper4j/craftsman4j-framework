@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.slipper4j.framework</groupId>
+        <artifactId>slipper4j-framework</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>slipper4j-spring-boot-starter-signature</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>接口签名相关</description>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.slipper4j.framework</groupId>
+            <artifactId>slipper4j-common</artifactId>
+        </dependency>
+
+        <!-- Spring 核心 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!-- Web 相关 -->
+        <dependency>
+            <groupId>com.slipper4j.framework</groupId>
+            <artifactId>slipper4j-spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- redis 相关 -->
+        <dependency>
+            <groupId>com.slipper4j.framework</groupId>
+            <artifactId>slipper4j-spring-boot-starter-redis</artifactId>
+        </dependency>
+
+        <!-- fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

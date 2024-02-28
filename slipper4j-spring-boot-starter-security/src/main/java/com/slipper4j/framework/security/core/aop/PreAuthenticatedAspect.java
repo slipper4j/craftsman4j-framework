@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 
 import static com.slipper4j.framework.common.exception.enums.GlobalErrorCodeConstants.UNAUTHORIZED;
-import static com.slipper4j.framework.common.exception.util.ServiceExceptionUtil.exception;
+import static com.slipper4j.framework.common.exception.util.ServiceExceptionUtils.exception;
 
 @Aspect
 @Slf4j

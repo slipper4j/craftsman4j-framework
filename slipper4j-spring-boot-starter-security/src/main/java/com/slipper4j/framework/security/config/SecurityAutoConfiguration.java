@@ -1,8 +1,8 @@
 package com.slipper4j.framework.security.config;
 
-import com.slipper4j.framework.security.api.UserTokenApi;
+import com.slipper4j.framework.security.core.UserTokenApi;
 import com.slipper4j.framework.security.core.aop.PreAuthenticatedAspect;
-import com.slipper4j.framework.security.api.PermissionApi;
+import com.slipper4j.framework.security.core.PermissionApi;
 import com.slipper4j.framework.security.core.context.TransmittableThreadLocalSecurityContextHolderStrategy;
 import com.slipper4j.framework.security.core.filter.TokenAuthenticationFilter;
 import com.slipper4j.framework.security.core.handler.AccessDeniedHandlerImpl;

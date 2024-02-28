@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- *  Request Body 缓存 Wrapper
+ * Request Body 缓存 Wrapper
  *
  * @author slipper4j
  */
@@ -22,6 +22,10 @@ public class CacheRequestBodyWrapper extends HttpServletRequestWrapper {
      * 缓存的内容
      */
     private final byte[] body;
+
+    public byte[] getBody() {
+        return body;
+    }
 
     public CacheRequestBodyWrapper(HttpServletRequest request) {
         super(request);
@@ -55,7 +59,8 @@ public class CacheRequestBodyWrapper extends HttpServletRequestWrapper {
             }
 
             @Override
-            public void setReadListener(ReadListener readListener) {}
+            public void setReadListener(ReadListener readListener) {
+            }
 
             @Override
             public int available() {

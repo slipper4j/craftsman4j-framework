@@ -47,6 +47,13 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- dubbo 相关 -->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!-- 工具类相关 -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -60,12 +67,6 @@
             <artifactId>bizlog-sdk</artifactId>
         </dependency>
 
-        <!-- 业务组件 -->
-<!--        <dependency>-->
-<!--            <groupId>com.slipper4j.framework</groupId>-->
-<!--            <artifactId>slipper4j-module-system-api</artifactId> &lt;!&ndash; 需要使用它，进行 Token 的校验 &ndash;&gt;-->
-<!--            <version>${revision}</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.slipper4j.framework</groupId>
             <artifactId>slipper4j-spring-boot-starter-biz-operatelog</artifactId>

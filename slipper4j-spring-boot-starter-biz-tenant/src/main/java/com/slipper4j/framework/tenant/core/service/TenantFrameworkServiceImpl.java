@@ -2,7 +2,7 @@ package com.slipper4j.framework.tenant.core.service;
 
 import com.slipper4j.framework.common.exception.ServiceException;
 import com.slipper4j.framework.common.util.cache.CacheUtils;
-import com.slipper4j.framework.tenant.api.TenantApi;
+import com.slipper4j.framework.tenant.core.TenantApi;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import lombok.RequiredArgsConstructor;

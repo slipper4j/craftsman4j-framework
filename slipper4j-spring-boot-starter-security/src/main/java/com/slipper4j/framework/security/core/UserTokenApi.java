@@ -1,4 +1,4 @@
-package com.slipper4j.framework.security.api;
+package com.slipper4j.framework.security.core;
 
 import com.slipper4j.framework.security.core.ILoginUser;
 

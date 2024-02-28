@@ -5,7 +5,7 @@ import com.slipper4j.framework.quartz.core.handler.JobHandlerInvoker;
 import org.quartz.*;
 
 import static com.slipper4j.framework.common.exception.enums.GlobalErrorCodeConstants.NOT_IMPLEMENTED;
-import static com.slipper4j.framework.common.exception.util.ServiceExceptionUtil.exception0;
+import static com.slipper4j.framework.common.exception.util.ServiceExceptionUtils.exception0;
 
 /**
  * {@link org.quartz.Scheduler} 的管理器，负责创建任务

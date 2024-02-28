@@ -1,7 +1,7 @@
 package com.slipper4j.framework.security.core.service;
 
 import cn.hutool.core.collection.CollUtil;
-import com.slipper4j.framework.security.api.PermissionApi;
+import com.slipper4j.framework.security.core.PermissionApi;
 import com.slipper4j.framework.security.core.ILoginUser;
 import com.slipper4j.framework.security.core.util.SecurityFrameworkUtils;
 import lombok.AllArgsConstructor;

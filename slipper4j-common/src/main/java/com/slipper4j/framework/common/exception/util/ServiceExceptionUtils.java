@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentMap;
  * 4. 异常提示信息，存储在 db 等等数据库中，从而实现可动态刷新
  */
 @Slf4j
-public class ServiceExceptionUtil {
+public class ServiceExceptionUtils {
 
     /**
      * 错误码提示模板
@@ -32,15 +32,15 @@ public class ServiceExceptionUtil {
     private static final ConcurrentMap<Integer, String> MESSAGES = new ConcurrentHashMap<>();
 
     public static void putAll(Map<Integer, String> messages) {
-        ServiceExceptionUtil.MESSAGES.putAll(messages);
+        ServiceExceptionUtils.MESSAGES.putAll(messages);
     }
 
     public static void put(Integer code, String message) {
-        ServiceExceptionUtil.MESSAGES.put(code, message);
+        ServiceExceptionUtils.MESSAGES.put(code, message);
     }
 
     public static void delete(Integer code, String message) {
-        ServiceExceptionUtil.MESSAGES.remove(code, message);
+        ServiceExceptionUtils.MESSAGES.remove(code, message);
     }
 
     // ========== 和 ServiceException 的集成 ==========
