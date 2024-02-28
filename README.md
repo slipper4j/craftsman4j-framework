@@ -1,5 +1,4 @@
-# slipper framework
-
+# slipper4j-framework
 slipper4j-framework 是一个方便快速集成的 SpringBoot Starter组件，它提供了简单而强大的功能，帮助你轻松地集成到你的 Spring Boot 应用中。
 
 每个子包，代表一个组件。每个组件包括两部分：
