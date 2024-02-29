@@ -1,5 +1,6 @@
 package com.craftsman4j.framework.signature.core.service;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -8,8 +9,7 @@ import com.craftsman4j.framework.signature.core.SignatureStrategy;
 import com.craftsman4j.framework.signature.core.annotations.Signature;
 import com.craftsman4j.framework.signature.core.properties.SignatureProperties;
 import com.craftsman4j.framework.signature.core.util.SignatureUtils;
-import com.craftsman4j.framework.web.core.filter.CacheRequestBodyWrapper;
-import org.apache.commons.lang3.StringUtils;
+import com.craftsman4j.framework.signature.core.filter.SignatureCacheRequestBodyWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -56,8 +56,8 @@ public abstract class AbstractSignatureStrategy implements SignatureStrategy {
         // 根据appId获取appSecret
         String appId = request.getHeader(signature.appId().filedName());
         String appSecret;
-        if (StringUtils.isBlank(appId) ||
-                StringUtils.isBlank(appSecret = signatureApi.getAppSecret(appId))) {
+        if (StrUtil.isBlank(appId) ||
+                StrUtil.isBlank(appSecret = signatureApi.getAppSecret(appId))) {
             return false;
         }
         // 根据request 中 header值生成SignatureHeaders实体
@@ -72,7 +72,7 @@ public abstract class AbstractSignatureStrategy implements SignatureStrategy {
         String serverSign = signatureApi.digestEncoder(plainText);
         // 客户端签名
         String clientSign = request.getHeader(signature.sign().filedName());
-        if (!StringUtils.equals(clientSign, serverSign)) {
+        if (!StrUtil.equals(clientSign, serverSign)) {
             return false;
         }
         String nonce = allParams.get(signature.nonce().filedName());
@@ -90,7 +90,7 @@ public abstract class AbstractSignatureStrategy implements SignatureStrategy {
     private boolean verifyHeaders(Signature signature, HttpServletRequest request) {
 
         String timestamp = request.getHeader(signature.timestamp().filedName());
-        if (StringUtils.isBlank(timestamp)) {
+        if (StrUtil.isBlank(timestamp)) {
             return false;
         }
 
@@ -104,19 +104,19 @@ public abstract class AbstractSignatureStrategy implements SignatureStrategy {
         }
 
         String nonce = request.getHeader(signature.nonce().filedName());
-        if (StringUtils.isBlank(nonce)) {
+        if (StrUtil.isBlank(nonce)) {
             return false;
         }
         if (nonce.length() < 10) {
             return false;
         }
         String cacheNonce = stringRedisTemplate.opsForValue().get(signatureProperties.getSignatureNonceCacheKey() + nonce);
-        if (StringUtils.isNotBlank(cacheNonce)) {
+        if (StrUtil.isNotBlank(cacheNonce)) {
             return false;
         }
 
         String sign = request.getHeader(signature.sign().filedName());
-        return StringUtils.isNotBlank(sign);
+        return StrUtil.isNotBlank(sign);
     }
 
     /**
@@ -153,10 +153,10 @@ public abstract class AbstractSignatureStrategy implements SignatureStrategy {
             sortedMap.put("param", JSON.toJSONString(paramMap));
         }
 
-        CacheRequestBodyWrapper requestWrapper = new CacheRequestBodyWrapper(request);
+        SignatureCacheRequestBodyWrapper requestWrapper = new SignatureCacheRequestBodyWrapper(request);
         // 分别获取了request input stream中的body信息、parameter信息
         String body = new String(requestWrapper.getBody(), StandardCharsets.UTF_8);
-        if (StringUtils.isNotBlank(body)) {
+        if (StrUtil.isNotBlank(body)) {
             // body可能为JSON对象或JSON数组
             Object parsedObject = JSON.parse(body);
             if (parsedObject instanceof JSONObject) {

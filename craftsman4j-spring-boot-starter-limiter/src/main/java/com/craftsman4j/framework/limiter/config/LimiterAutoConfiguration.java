@@ -5,8 +5,6 @@ import com.craftsman4j.framework.limiter.core.RateLimiterContext;
 import com.craftsman4j.framework.limiter.core.RateLimiterKeyGenerate;
 import com.craftsman4j.framework.limiter.core.interceptor.RateLimitInterceptor;
 import com.craftsman4j.framework.limiter.core.key.DefaultRateLimiterKeyGenerate;
-import com.craftsman4j.framework.limiter.core.key.TenantRateLimiterKeyGenerate;
-import com.craftsman4j.framework.limiter.core.key.UserRateLimiterKeyGenerate;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.ApplicationContext;
@@ -42,18 +40,6 @@ public class LimiterAutoConfiguration implements ApplicationContextAware {
     @Primary
     public RateLimiterKeyGenerate rateLimiterKeyGenerate() {
         return new DefaultRateLimiterKeyGenerate();
-    }
-
-    @Bean
-    @ConditionalOnClass(name = "com.craftsman4j.framework.security.core.ILoginUser")
-    public RateLimiterKeyGenerate userRateLimiterKeyGenerate() {
-        return new UserRateLimiterKeyGenerate();
-    }
-
-    @Bean
-    @ConditionalOnClass(name = "com.craftsman4j.framework.tenant.api.TenantApi")
-    public RateLimiterKeyGenerate tenantRateLimiterKeyGenerate() {
-        return new TenantRateLimiterKeyGenerate();
     }
 
     private static ApplicationContext applicationContext;

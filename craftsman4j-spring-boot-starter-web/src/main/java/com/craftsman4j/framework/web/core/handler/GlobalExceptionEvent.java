@@ -1,4 +1,4 @@
-package com.craftsman4j.framework.web.core;
+package com.craftsman4j.framework.web.core.handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

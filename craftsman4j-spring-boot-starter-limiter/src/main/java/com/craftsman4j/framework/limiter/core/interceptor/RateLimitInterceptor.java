@@ -1,7 +1,9 @@
 package com.craftsman4j.framework.limiter.core.interceptor;
 
+import com.craftsman4j.framework.common.exception.ServiceException;
+import com.craftsman4j.framework.common.exception.enums.GlobalErrorCodeConstants;
 import com.craftsman4j.framework.common.util.servlet.IpUtils;
-import com.craftsman4j.framework.limiter.core.anno.RateLimiter;
+import com.craftsman4j.framework.limiter.core.annotation.RateLimiter;
 import com.craftsman4j.framework.limiter.core.exception.RateLimiterException;
 import com.craftsman4j.framework.limiter.core.RateLimiterContext;
 import com.craftsman4j.framework.limiter.core.RateLimiterKeyGenerate;
@@ -65,8 +67,7 @@ public class RateLimitInterceptor implements HandlerInterceptor, ApplicationCont
             interval = rateLimiter.timeUnit().toSeconds(interval);
         }
         if (!rateLimiterService.tryAcquire(keyBuilder.toString(), rateLimiter.maxAttempts(), interval)) {
-
-            throw new RateLimiterException();
+            throw new ServiceException(GlobalErrorCodeConstants.TOO_MANY_REQUESTS);
         }
         return true;
     }

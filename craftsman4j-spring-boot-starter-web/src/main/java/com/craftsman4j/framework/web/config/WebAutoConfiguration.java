@@ -57,7 +57,7 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
                 && antPathMatcher.match(api.getController(), clazz.getPackage().getName())); // 仅仅匹配 controller 包
     }
 
-    @Bean
+    @Bean(name = "com.craftsman4j.framework.web.core.handler.GlobalExceptionHandler")
     public GlobalExceptionHandler globalExceptionHandler(ApiErrorLogFrameworkService ApiErrorLogFrameworkService) {
         return new GlobalExceptionHandler(applicationName, ApiErrorLogFrameworkService);
     }
@@ -97,7 +97,7 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
      * 创建 RequestBodyCacheFilter Bean，可重复读取请求内容
      */
     @Bean
-    public FilterRegistrationBean<CacheRequestBodyFilter> requestBodyCacheFilter() {
+    public FilterRegistrationBean<CacheRequestBodyFilter> cacheRequestBodyFilter() {
         return createFilterBean(new CacheRequestBodyFilter(), WebFilterOrderEnum.REQUEST_BODY_CACHE_FILTER);
     }
 

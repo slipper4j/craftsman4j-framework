@@ -1,4 +1,4 @@
-package com.craftsman4j.framework.limiter.core.anno;
+package com.craftsman4j.framework.limiter.core.annotation;
 
 import com.craftsman4j.framework.limiter.core.key.DefaultRateLimiterKeyGenerate;
 import com.craftsman4j.framework.limiter.core.RateLimiterKeyGenerate;

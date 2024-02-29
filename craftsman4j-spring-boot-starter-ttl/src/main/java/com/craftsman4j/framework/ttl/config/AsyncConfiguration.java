@@ -2,7 +2,7 @@ package com.craftsman4j.framework.ttl.config;
 
 
 import cn.hutool.extra.spring.SpringUtil;
-import com.craftsman4j.framework.web.core.GlobalExceptionEvent;
+import com.craftsman4j.framework.web.core.handler.GlobalExceptionEvent;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;

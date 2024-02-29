@@ -12,6 +12,7 @@ import com.craftsman4j.framework.security.core.util.SecurityFrameworkUtils;
 import com.craftsman4j.framework.web.core.handler.GlobalExceptionHandler;
 import com.craftsman4j.framework.web.core.util.WebFrameworkUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 
 import javax.servlet.FilterChain;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
+import static com.craftsman4j.framework.common.exception.enums.GlobalErrorCodeConstants.*;
+
 /**
  * Token 过滤器，验证 token 的有效性
  * 验证通过后，获得 {@link ILoginUser} 信息，并加入到 Spring Security 上下文
@@ -28,6 +31,7 @@ import java.util.Set;
  * @author craftsman4j
  */
 @RequiredArgsConstructor
+@Slf4j
 public class DefaultTokenAuthenticationFilter extends AbstractTokenAuthenticationFilter {
 
     private final SecurityProperties securityProperties;
@@ -57,7 +61,7 @@ public class DefaultTokenAuthenticationFilter extends AbstractTokenAuthenticatio
                     SecurityFrameworkUtils.setLoginUser(loginUser, request);
                 }
             } catch (Throwable ex) {
-                CommonResult<?> result = globalExceptionHandler.allExceptionHandler(request, ex);
+                CommonResult<?> result = exceptionHandler(request, ex);
                 ServletUtils.writeJSON(response, result);
                 return;
             }
@@ -129,6 +133,22 @@ public class DefaultTokenAuthenticationFilter extends AbstractTokenAuthenticatio
                 return WebFrameworkUtils.getTenantId(request);
             }
         };
+    }
+
+    public CommonResult<?> exceptionHandler(HttpServletRequest request, Throwable ex) {
+        CommonResult<?> result;
+        if (ex instanceof AccessDeniedException) {
+            result = accessDeniedExceptionHandler(request, (AccessDeniedException) ex);
+        } else {
+            result = globalExceptionHandler.allExceptionHandler(request, ex);
+        }
+        return result;
+    }
+
+    private static CommonResult<?> accessDeniedExceptionHandler(HttpServletRequest req, AccessDeniedException ex) {
+        log.warn("[accessDeniedExceptionHandler][userId({}) 无法访问 url({})]", WebFrameworkUtils.getLoginUserId(req),
+                req.getRequestURL(), ex);
+        return CommonResult.error(FORBIDDEN);
     }
 
 }
