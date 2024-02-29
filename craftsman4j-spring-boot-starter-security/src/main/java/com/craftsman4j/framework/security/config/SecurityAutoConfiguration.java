@@ -1,17 +1,19 @@
 package com.craftsman4j.framework.security.config;
 
+import com.craftsman4j.framework.security.core.PermissionApi;
+import com.craftsman4j.framework.security.core.UserTokenApi;
 import com.craftsman4j.framework.security.core.aop.PreAuthenticatedAspect;
 import com.craftsman4j.framework.security.core.context.TransmittableThreadLocalSecurityContextHolderStrategy;
+import com.craftsman4j.framework.security.core.filter.AbstractTokenAuthenticationFilter;
 import com.craftsman4j.framework.security.core.filter.DefaultTokenAuthenticationFilter;
 import com.craftsman4j.framework.security.core.handler.AccessDeniedHandlerImpl;
 import com.craftsman4j.framework.security.core.handler.AuthenticationEntryPointImpl;
 import com.craftsman4j.framework.security.core.service.SecurityFrameworkService;
 import com.craftsman4j.framework.security.core.service.SecurityFrameworkServiceImpl;
-import com.craftsman4j.framework.security.core.UserTokenApi;
-import com.craftsman4j.framework.security.core.PermissionApi;
 import com.craftsman4j.framework.web.core.handler.GlobalExceptionHandler;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,7 +26,7 @@ import javax.annotation.Resource;
 
 /**
  * Spring Security 自动配置类，主要用于相关组件的配置
- *
+ * <p>
  * 注意，不能和 {@link WebSecurityConfigurerAdapter} 用一个，原因是会导致初始化报错。
  * 参见 https://stackoverflow.com/questions/53847050/spring-boot-delegatebuilder-cannot-be-null-on-autowiring-authenticationmanager 文档。
  *
@@ -76,8 +78,9 @@ public class SecurityAutoConfiguration {
      * Token 认证过滤器 Bean
      */
     @Bean
-    public DefaultTokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler,
-                                                                      UserTokenApi userTokenApi) {
+    @ConditionalOnMissingBean(AbstractTokenAuthenticationFilter.class)
+    public AbstractTokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler,
+                                                                       UserTokenApi userTokenApi) {
         return new DefaultTokenAuthenticationFilter(securityProperties, globalExceptionHandler, userTokenApi);
     }
 
