@@ -1,0 +1,2 @@
+com.craftsman4j.framework.quartz.config.QuartzAutoConfiguration
+com.craftsman4j.framework.quartz.config.AsyncAutoConfiguration

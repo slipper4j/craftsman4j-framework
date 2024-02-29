@@ -1,0 +1,3 @@
+com.craftsman4j.framework.security.config.SecurityAutoConfiguration
+com.craftsman4j.framework.security.config.WebSecurityConfigurerAdapter
+com.craftsman4j.framework.operatelog.config.OperateLogV2Configuration

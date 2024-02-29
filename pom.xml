@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.slipper4j.framework</groupId>
-    <artifactId>slipper4j-framework</artifactId>
+    <groupId>com.craftsman4j.framework</groupId>
+    <artifactId>craftsman4j-framework</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
 
@@ -20,40 +20,40 @@
         2. 业务组件：和业务相关的组件的封装，例如说数据字典、操作日志等等。
         如果是业务组件，Maven 名字会包含 biz
     </description>
-    <url>https://github.com/slipper4j/slipper4j-framework</url>
+    <url>https://github.com/slipper4j/craftsman4j-framework</url>
 
     <modules>
-        <module>slipper4j-dependencies</module>
+        <module>craftsman4j-dependencies</module>
 
-        <module>slipper4j-common</module>
-        <module>slipper4j-spring-boot-starter-web</module>
-        <module>slipper4j-spring-boot-starter-mybatis</module>
-        <module>slipper4j-spring-boot-starter-security</module>
-        <module>slipper4j-spring-boot-starter-redis</module>
-        <module>slipper4j-spring-boot-starter-limiter</module>
-        <module>slipper4j-spring-boot-starter-signature</module>
-        <module>slipper4j-spring-boot-starter-lock</module>
-        <module>slipper4j-spring-boot-starter-job</module>
-        <module>slipper4j-spring-boot-starter-mq</module>
-        <module>slipper4j-spring-boot-starter-ttl</module>
+        <module>craftsman4j-common</module>
+        <module>craftsman4j-spring-boot-starter-web</module>
+        <module>craftsman4j-spring-boot-starter-mybatis</module>
+        <module>craftsman4j-spring-boot-starter-security</module>
+        <module>craftsman4j-spring-boot-starter-redis</module>
+        <module>craftsman4j-spring-boot-starter-limiter</module>
+        <module>craftsman4j-spring-boot-starter-signature</module>
+        <module>craftsman4j-spring-boot-starter-lock</module>
+        <module>craftsman4j-spring-boot-starter-job</module>
+        <module>craftsman4j-spring-boot-starter-mq</module>
+        <module>craftsman4j-spring-boot-starter-ttl</module>
 
-        <module>slipper4j-spring-boot-starter-file</module>
-        <module>slipper4j-spring-boot-starter-monitor</module>
-        <module>slipper4j-spring-boot-starter-excel</module>
+        <module>craftsman4j-spring-boot-starter-file</module>
+        <module>craftsman4j-spring-boot-starter-monitor</module>
+        <module>craftsman4j-spring-boot-starter-excel</module>
 
-        <module>slipper4j-spring-boot-starter-biz-operatelog</module>
-        <module>slipper4j-spring-boot-starter-biz-dict</module>
-        <module>slipper4j-spring-boot-starter-biz-tenant</module>
-        <module>slipper4j-spring-boot-starter-biz-data-permission</module>
-        <module>slipper4j-spring-boot-starter-biz-ip</module>
+        <module>craftsman4j-spring-boot-starter-biz-operatelog</module>
+        <module>craftsman4j-spring-boot-starter-biz-dict</module>
+        <module>craftsman4j-spring-boot-starter-biz-tenant</module>
+        <module>craftsman4j-spring-boot-starter-biz-data-permission</module>
+        <module>craftsman4j-spring-boot-starter-biz-ip</module>
 
-        <module>slipper4j-spring-boot-starter-captcha</module>
-        <module>slipper4j-spring-boot-starter-websocket</module>
+        <module>craftsman4j-spring-boot-starter-captcha</module>
+        <module>craftsman4j-spring-boot-starter-websocket</module>
     </modules>
 
     <properties>
         <revision>0.1.0-SNAPSHOT</revision>
-        <slipper-dependencies.version>0.1.0-SNAPSHOT</slipper-dependencies.version>
+        <craftsman4jdependencies.version>0.1.0-SNAPSHOT</craftsman4jdependencies.version>
 
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -93,9 +93,9 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.slipper4j.framework</groupId>
-                <artifactId>slipper4j-dependencies</artifactId>
-                <version>${slipper-dependencies.version}</version>
+                <groupId>com.craftsman4j.framework</groupId>
+                <artifactId>craftsman4j-dependencies</artifactId>
+                <version>${craftsman4jdependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -104,10 +104,10 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/slipper4j/slipper4j-framework/issues</url>
+        <url>https://github.com/slipper4j/craftsman4j-framework/issues</url>
     </issueManagement>
     <organization>
-        <name>slipper4j</name>
+        <name>craftsman4j</name>
         <url>https://github.com/slipper4j</url>
     </organization>
 
@@ -201,7 +201,7 @@
     <!-- 开发人员信息 -->
     <developers>
         <developer>
-            <name>slipper4j</name>
+            <name>craftsman4j</name>
             <email>921366807@qq.com</email>
             <organization>https://github.com/slipper4j</organization>
             <timezone>+8</timezone>

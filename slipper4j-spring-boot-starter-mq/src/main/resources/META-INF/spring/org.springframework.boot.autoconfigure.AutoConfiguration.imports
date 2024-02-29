@@ -1,3 +1,0 @@
-com.slipper4j.framework.mq.redis.config.RedisMQProducerAutoConfiguration
-com.slipper4j.framework.mq.redis.config.RedisMQConsumerAutoConfiguration
-com.slipper4j.framework.mq.rabbitmq.config.RabbitMQAutoConfiguration

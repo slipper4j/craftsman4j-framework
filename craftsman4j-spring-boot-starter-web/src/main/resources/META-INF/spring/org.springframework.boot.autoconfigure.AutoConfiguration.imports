@@ -1,0 +1,6 @@
+com.craftsman4j.framework.apilog.config.ApiLogAutoConfiguration
+com.craftsman4j.framework.jackson.config.JacksonAutoConfiguration
+com.craftsman4j.framework.swagger.config.SwaggerAutoConfiguration
+com.craftsman4j.framework.web.config.WebAutoConfiguration
+com.craftsman4j.framework.xss.config.XssAutoConfiguration
+com.craftsman4j.framework.banner.config.BannerAutoConfiguration

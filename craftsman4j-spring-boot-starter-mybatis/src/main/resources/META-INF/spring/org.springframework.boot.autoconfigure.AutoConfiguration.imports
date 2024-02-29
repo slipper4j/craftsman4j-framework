@@ -1,0 +1,2 @@
+com.craftsman4j.framework.datasource.config.DataSourceAutoConfiguration
+com.craftsman4j.framework.mybatis.config.MybatisAutoConfiguration

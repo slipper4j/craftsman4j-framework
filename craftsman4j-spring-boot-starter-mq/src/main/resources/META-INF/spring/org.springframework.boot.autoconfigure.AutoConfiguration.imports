@@ -1,0 +1,3 @@
+com.craftsman4j.framework.mq.redis.config.RedisMQProducerAutoConfiguration
+com.craftsman4j.framework.mq.redis.config.RedisMQConsumerAutoConfiguration
+com.craftsman4j.framework.mq.rabbitmq.config.RabbitMQAutoConfiguration

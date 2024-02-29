@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.craftsman4j.framework</groupId>
+        <artifactId>craftsman4j-framework</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>craftsman4j-spring-boot-starter-limiter</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>接口限流器，支持固定窗口，滑动窗口，滑动日志，漏桶算法，令牌桶算法</description>
+
+    <properties>
+        <admin4j-limiter.version>0.8.0</admin4j-limiter.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- core -->
+        <dependency>
+            <groupId>com.craftsman4j.framework</groupId>
+            <artifactId>craftsman4j-common</artifactId>
+        </dependency>
+
+        <!-- redis相关 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- starter相关 -->
+        <dependency>
+            <groupId>com.craftsman4j.framework</groupId>
+            <artifactId>craftsman4j-spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>

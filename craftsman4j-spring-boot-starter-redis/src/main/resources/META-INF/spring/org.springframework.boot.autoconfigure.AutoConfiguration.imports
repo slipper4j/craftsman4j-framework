@@ -1,0 +1,2 @@
+com.craftsman4j.framework.redis.config.RedisAutoConfiguration
+com.craftsman4j.framework.redis.config.CacheAutoConfiguration
