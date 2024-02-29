@@ -1,13 +1,16 @@
 package com.craftsman4j.framework.security.config;
 
 import cn.hutool.core.collection.CollUtil;
-import com.craftsman4j.framework.security.core.filter.TokenAuthenticationFilter;
+import com.craftsman4j.framework.security.core.filter.AbstractTokenAuthenticationFilter;
 import com.craftsman4j.framework.web.config.WebProperties;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.OrderComparator;
+import org.springframework.core.Ordered;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -28,6 +31,7 @@ import javax.annotation.security.PermitAll;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 自定义的 Spring Security 配置适配器实现
@@ -36,7 +40,7 @@ import java.util.Set;
  */
 @AutoConfiguration
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-public class WebSecurityConfigurerAdapter {
+public class WebSecurityConfigurerAdapter implements InitializingBean {
 
     @Resource
     private WebProperties webProperties;
@@ -57,7 +61,9 @@ public class WebSecurityConfigurerAdapter {
      * Token 认证过滤器 Bean
      */
     @Resource
-    private TokenAuthenticationFilter authenticationTokenFilter;
+    private List<AbstractTokenAuthenticationFilter> authenticationTokenFilters;
+
+    private AbstractTokenAuthenticationFilter authenticationTokenFilter;
 
     /**
      * 自定义的权限映射 Bean 们
@@ -81,7 +87,7 @@ public class WebSecurityConfigurerAdapter {
 
     /**
      * 配置 URL 的安全配置
-     *
+     * <p>
      * anyRequest          |   匹配所有请求路径
      * access              |   SpringEl表达式结果为true时可以访问
      * anonymous           |   匿名可以访问
@@ -194,4 +200,20 @@ public class WebSecurityConfigurerAdapter {
         return result;
     }
 
+    @Override
+    public void afterPropertiesSet() {
+        Map<Class<? extends AbstractTokenAuthenticationFilter>, AbstractTokenAuthenticationFilter> authenticationFilterMap =
+                authenticationTokenFilters.stream().collect(Collectors.toMap(AbstractTokenAuthenticationFilter::getClass, x -> x));
+        // 获取带Ordered的实现类
+        List<AbstractTokenAuthenticationFilter> priorityOrderedLockBuilders = authenticationTokenFilters.stream().filter(Ordered.class::isInstance).collect(Collectors.toList());
+        if (securityProperties.getPrimaryAuthenticationFilter() != null) {
+            authenticationTokenFilter = authenticationFilterMap.get(securityProperties.getPrimaryAuthenticationFilter());
+        } else if (!priorityOrderedLockBuilders.isEmpty()) {
+            // 排序默认取第一个
+            priorityOrderedLockBuilders.sort(OrderComparator.INSTANCE);
+            authenticationTokenFilter = priorityOrderedLockBuilders.get(0);
+        } else {
+            authenticationTokenFilter = authenticationTokenFilters.get(0);
+        }
+    }
 }

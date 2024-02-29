@@ -2,7 +2,7 @@ package com.craftsman4j.framework.security.config;
 
 import com.craftsman4j.framework.security.core.aop.PreAuthenticatedAspect;
 import com.craftsman4j.framework.security.core.context.TransmittableThreadLocalSecurityContextHolderStrategy;
-import com.craftsman4j.framework.security.core.filter.TokenAuthenticationFilter;
+import com.craftsman4j.framework.security.core.filter.DefaultTokenAuthenticationFilter;
 import com.craftsman4j.framework.security.core.handler.AccessDeniedHandlerImpl;
 import com.craftsman4j.framework.security.core.handler.AuthenticationEntryPointImpl;
 import com.craftsman4j.framework.security.core.service.SecurityFrameworkService;
@@ -76,9 +76,9 @@ public class SecurityAutoConfiguration {
      * Token 认证过滤器 Bean
      */
     @Bean
-    public TokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler,
-                                                               UserTokenApi userTokenApi) {
-        return new TokenAuthenticationFilter(securityProperties, globalExceptionHandler, userTokenApi);
+    public DefaultTokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler,
+                                                                      UserTokenApi userTokenApi) {
+        return new DefaultTokenAuthenticationFilter(securityProperties, globalExceptionHandler, userTokenApi);
     }
 
     @Bean("ss") // 使用 Spring Security 的缩写，方便使用

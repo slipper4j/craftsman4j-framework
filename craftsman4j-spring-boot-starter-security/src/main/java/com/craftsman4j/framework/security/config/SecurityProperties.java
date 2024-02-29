@@ -1,5 +1,6 @@
 package com.craftsman4j.framework.security.config;
 
+import com.craftsman4j.framework.security.core.filter.AbstractTokenAuthenticationFilter;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +22,7 @@ public class SecurityProperties {
     private String tokenHeader = "Authorization";
     /**
      * HTTP 请求时，访问令牌的请求参数
-     *
+     * <p>
      * 初始目的：解决 WebSocket 无法通过 header 传参，只能通过 token 参数拼接
      */
     @NotEmpty(message = "Token Parameter 不能为空")
@@ -38,6 +39,11 @@ public class SecurityProperties {
      */
     @NotEmpty(message = "mock 模式的密钥不能为空") // 这里设置了一个默认值，因为实际上只有 mockEnable 为 true 时才需要配置。
     private String mockSecret = "test";
+
+    /**
+     * 默认token过滤器，不设置存在多个时默认根据PriorityOrdered、Ordered排序规则选择|注入顺序选择
+     */
+    private Class<? extends AbstractTokenAuthenticationFilter> primaryAuthenticationFilter;
 
     /**
      * 免登录的 URL 列表

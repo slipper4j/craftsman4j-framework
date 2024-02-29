@@ -2,18 +2,17 @@ package com.craftsman4j.framework.security.core.filter;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import com.craftsman4j.framework.security.core.util.SecurityFrameworkUtils;
 import com.craftsman4j.framework.common.exception.ServiceException;
 import com.craftsman4j.framework.common.pojo.CommonResult;
 import com.craftsman4j.framework.common.util.servlet.ServletUtils;
-import com.craftsman4j.framework.security.core.UserTokenApi;
 import com.craftsman4j.framework.security.config.SecurityProperties;
 import com.craftsman4j.framework.security.core.ILoginUser;
+import com.craftsman4j.framework.security.core.UserTokenApi;
+import com.craftsman4j.framework.security.core.util.SecurityFrameworkUtils;
 import com.craftsman4j.framework.web.core.handler.GlobalExceptionHandler;
 import com.craftsman4j.framework.web.core.util.WebFrameworkUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -29,7 +28,7 @@ import java.util.Set;
  * @author craftsman4j
  */
 @RequiredArgsConstructor
-public class TokenAuthenticationFilter extends OncePerRequestFilter {
+public class DefaultTokenAuthenticationFilter extends AbstractTokenAuthenticationFilter {
 
     private final SecurityProperties securityProperties;
 
