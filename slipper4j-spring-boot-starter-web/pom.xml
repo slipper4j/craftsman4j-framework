@@ -48,18 +48,6 @@
             <scope>provided</scope> <!-- 设置为 provided，主要是 GlobalExceptionHandler 使用 -->
         </dependency>
 
-        <!-- 业务组件 -->
-<!--        <dependency>-->
-<!--            <groupId>com.slipper4j.framework</groupId>-->
-<!--            <artifactId>slipper4j-module-infra-api</artifactId> &lt;!&ndash; 需要使用它，进行操作日志的记录 &ndash;&gt;-->
-<!--            <version>${revision}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.slipper4j.framework</groupId>-->
-<!--            <artifactId>slipper4j-module-system-api</artifactId> &lt;!&ndash; 需要使用它，进行错误码的记录 &ndash;&gt;-->
-<!--            <version>${revision}</version>-->
-<!--        </dependency>-->
-
         <!-- xss -->
         <dependency>
             <groupId>org.jsoup</groupId>

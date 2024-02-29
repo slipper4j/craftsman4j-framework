@@ -34,19 +34,6 @@
             <artifactId>slipper4j-spring-boot-starter-mybatis</artifactId>
         </dependency>
 
-        <!-- 业务组件 -->
-<!--        <dependency>-->
-<!--            <groupId>com.slipper4j.framework</groupId>-->
-<!--            <artifactId>slipper4j-module-system-api</artifactId> &lt;!&ndash; 需要使用它，进行数据权限的获取 &ndash;&gt;-->
-<!--            <version>${revision}</version>-->
-<!--        </dependency>-->
-
-        <!-- Test 测试相关 -->
-        <dependency>
-            <groupId>com.slipper4j.framework</groupId>
-            <artifactId>slipper4j-spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 </project>

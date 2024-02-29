@@ -72,12 +72,6 @@
             <artifactId>minio</artifactId>
         </dependency>
 
-        <!-- Test 测试相关 -->
-        <dependency>
-            <groupId>com.slipper4j.framework</groupId>
-            <artifactId>slipper4j-spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 </project>

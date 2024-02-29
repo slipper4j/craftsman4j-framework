@@ -375,14 +375,6 @@
                 <version>${spring-boot-admin.version}</version>
             </dependency>
 
-            <!-- Test 测试相关 -->
-            <dependency>
-                <groupId>com.slipper4j.framework</groupId>
-                <artifactId>slipper4j-spring-boot-starter-test</artifactId>
-                <version>${revision}</version>
-                <scope>test</scope>
-            </dependency>
-
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-inline</artifactId>
