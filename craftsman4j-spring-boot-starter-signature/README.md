@@ -148,4 +148,4 @@ public class SignatureController {
 }
 ```
 
-## 重写com.admin4j.framework.signature.core.AbstractSignatureStrategy实现自定义签名规则
+## 重写com.craftsman4j.framework.signature.core.service.AbstractSignatureStrategy实现自定义签名规则
