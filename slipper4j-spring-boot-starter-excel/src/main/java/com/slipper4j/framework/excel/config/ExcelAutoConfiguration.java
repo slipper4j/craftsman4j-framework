@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
- * @author andanyang
+ * @author zhougang
  * @since 2023/7/24 15:40
  */
 public class ExcelAutoConfiguration implements InitializingBean {

@@ -7,7 +7,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 /**
  * 固定窗口，限流
  *
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/11 13:39
  */
 @Configuration

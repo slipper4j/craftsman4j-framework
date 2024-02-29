@@ -1,7 +1,7 @@
 package com.slipper4j.framework.limiter.core;
 
 /**
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/11 9:42
  */
 public interface RateLimiterApi {

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * excel 生命周期
  *
- * @author andanyang
+ * @author zhougang
  * @since 2023/7/24 15:28
  */
 public interface ExcelWriteLifecycle {

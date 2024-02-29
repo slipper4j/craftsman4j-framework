@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 /**
  * 手动注入
  *
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/20 14:10
  */
 public class SpringRegisterUtils {

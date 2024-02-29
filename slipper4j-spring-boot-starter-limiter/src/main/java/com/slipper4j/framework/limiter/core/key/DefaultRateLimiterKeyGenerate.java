@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/12 10:01
  */
 public class DefaultRateLimiterKeyGenerate implements RateLimiterKeyGenerate {

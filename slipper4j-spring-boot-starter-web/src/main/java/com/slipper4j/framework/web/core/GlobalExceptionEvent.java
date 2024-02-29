@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * 全局错误事件
  *
- * @author andanyang
+ * @author zhougang
  * @since 2020/5/12 17:00
  */
 @Data

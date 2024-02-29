@@ -5,7 +5,7 @@ import com.slipper4j.framework.security.core.ILoginUser;
 /**
  * 用户令牌服务
  *
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/30 13:27
  */
 public interface UserTokenApi {

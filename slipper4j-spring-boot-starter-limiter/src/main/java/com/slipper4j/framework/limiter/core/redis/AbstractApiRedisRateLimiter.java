@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
 import java.util.Collections;
 
 /**
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/11 10:43
  */
 public abstract class AbstractApiRedisRateLimiter implements RateLimiterProvider {

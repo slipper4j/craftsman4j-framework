@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 /**
  * 令牌桶算法限速工具类
  *
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/15 9:51
  */
 public class RateLimiterUtils {

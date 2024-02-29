@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/11 14:53
  */
 public class DefaultRateLimiterContext implements ApplicationContextAware, InitializingBean, RateLimiterContext {

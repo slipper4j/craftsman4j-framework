@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 /**
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/11 15:10
  */
 @Configuration

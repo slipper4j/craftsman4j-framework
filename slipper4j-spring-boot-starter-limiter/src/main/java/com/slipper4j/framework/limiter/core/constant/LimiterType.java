@@ -1,7 +1,7 @@
 package com.slipper4j.framework.limiter.core.constant;
 
 /**
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/11 9:38
  */
 public enum LimiterType {

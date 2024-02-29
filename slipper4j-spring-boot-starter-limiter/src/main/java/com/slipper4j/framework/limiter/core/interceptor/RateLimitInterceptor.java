@@ -16,7 +16,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author andanyang
+ * @author zhougang
  * @since 2023/5/11 9:51
  */
 public class RateLimitInterceptor implements HandlerInterceptor, ApplicationContextAware {

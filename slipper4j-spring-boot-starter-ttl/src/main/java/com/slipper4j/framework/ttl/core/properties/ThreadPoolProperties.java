@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author andanyang
+ * @author zhougang
  * @since 2022/11/4 16:02
  */
 @ConfigurationProperties("slipper4j.async")
