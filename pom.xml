@@ -32,7 +32,7 @@
         <module>slipper4j-spring-boot-starter-redis</module>
         <module>slipper4j-spring-boot-starter-limiter</module>
         <module>slipper4j-spring-boot-starter-signature</module>
-        <module>slipper4j-spring-boot-starter-protection</module>
+        <module>slipper4j-spring-boot-starter-lock</module>
         <module>slipper4j-spring-boot-starter-job</module>
         <module>slipper4j-spring-boot-starter-mq</module>
         <module>slipper4j-spring-boot-starter-ttl</module>

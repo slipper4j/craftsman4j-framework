@@ -8,7 +8,7 @@
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>slipper4j-spring-boot-starter-protection</artifactId>
+    <artifactId>slipper4j-spring-boot-starter-lock</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>

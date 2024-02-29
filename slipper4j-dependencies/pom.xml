@@ -283,7 +283,7 @@
             <!-- 服务保障相关 -->
             <dependency>
                 <groupId>com.slipper4j.framework</groupId>
-                <artifactId>slipper4j-spring-boot-starter-protection</artifactId>
+                <artifactId>slipper4j-spring-boot-starter-lock</artifactId>
                 <version>${revision}</version>
             </dependency>
 
