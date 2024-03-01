@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.springframework.web.util.pattern.PathPattern;
 
 import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
@@ -134,7 +135,7 @@ public class WebSecurityConfigurerAdapter implements InitializingBean {
                 // 1.3 基于 craftsman4j.security.permit-all-urls 无需认证
                 .antMatchers(securityProperties.getPermitAllUrls().toArray(new String[0])).permitAll()
                 // 1.4 设置 App API 无需认证
-                .antMatchers(buildAppApi("/**")).permitAll()
+//                .antMatchers(buildAppApi("/**")).permitAll()
                 // 1.5 验证码captcha 允许匿名访问
                 .antMatchers("/captcha/get", "/captcha/check").permitAll()
                 // ②：每个项目的自定义规则
@@ -166,10 +167,14 @@ public class WebSecurityConfigurerAdapter implements InitializingBean {
             if (!handlerMethod.hasMethodAnnotation(PermitAll.class)) {
                 continue;
             }
-            if (entry.getKey().getPatternsCondition() == null) {
+            Set<String> urls;
+            if (entry.getKey().getPatternsCondition() != null) {
+                urls = entry.getKey().getPatternsCondition().getPatterns();
+            } else if (entry.getKey().getPathPatternsCondition() != null) {
+                urls = entry.getKey().getPathPatternsCondition().getPatterns().stream().map(PathPattern::getPatternString).collect(Collectors.toSet());
+            } else {
                 continue;
             }
-            Set<String> urls = entry.getKey().getPatternsCondition().getPatterns();
             // 特殊：使用 @RequestMapping 注解，并且未写 method 属性，此时认为都需要免登录
             Set<RequestMethod> methods = entry.getKey().getMethodsCondition().getMethods();
             if (CollUtil.isEmpty(methods)) { //
