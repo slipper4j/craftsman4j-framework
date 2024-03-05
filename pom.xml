@@ -42,10 +42,8 @@
         <module>craftsman4j-spring-boot-starter-excel</module>
 
         <module>craftsman4j-spring-boot-starter-biz-operatelog</module>
-        <module>craftsman4j-spring-boot-starter-biz-dict</module>
         <module>craftsman4j-spring-boot-starter-biz-tenant</module>
         <module>craftsman4j-spring-boot-starter-biz-data-permission</module>
-        <module>craftsman4j-spring-boot-starter-biz-ip</module>
 
         <module>craftsman4j-spring-boot-starter-captcha</module>
         <module>craftsman4j-spring-boot-starter-websocket</module>

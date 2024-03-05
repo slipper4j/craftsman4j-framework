@@ -1,6 +1,6 @@
-package com.craftsman4j.framework.dict.api;
+package com.craftsman4j.framework.dict.core;
 
-import com.craftsman4j.framework.dict.api.dto.DictDataRespDTO;
+import com.craftsman4j.framework.dict.core.dto.DictDataRespDTO;
 
 /**
  * 字典数据 API 接口

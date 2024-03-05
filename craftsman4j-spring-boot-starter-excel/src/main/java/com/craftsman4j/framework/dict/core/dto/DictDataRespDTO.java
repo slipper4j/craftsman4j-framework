@@ -1,4 +1,4 @@
-package com.craftsman4j.framework.dict.api.dto;
+package com.craftsman4j.framework.dict.core.dto;
 
 import com.craftsman4j.framework.common.enums.CommonStatusEnum;
 import lombok.Data;
