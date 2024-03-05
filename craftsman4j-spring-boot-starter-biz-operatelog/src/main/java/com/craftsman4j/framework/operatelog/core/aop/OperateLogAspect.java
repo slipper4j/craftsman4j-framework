@@ -10,12 +10,12 @@ import com.craftsman4j.framework.common.util.json.JsonUtils;
 import com.craftsman4j.framework.common.util.monitor.TracerUtils;
 import com.craftsman4j.framework.common.util.servlet.ServletUtils;
 import com.craftsman4j.framework.operatelog.core.annotations.OperateLog;
+import com.craftsman4j.framework.operatelog.core.enums.OperateTypeEnum;
 import com.craftsman4j.framework.operatelog.core.service.OperateLogFrameworkService;
 import com.craftsman4j.framework.web.core.util.WebFrameworkUtils;
-import com.craftsman4j.framework.operatelog.core.enums.OperateTypeEnum;
 import com.google.common.collect.Maps;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -33,17 +33,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 /**
  * 拦截使用 @OperateLog 注解，如果满足条件，则生成操作日志。
- * 满足如下任一条件，则会进行记录：
- * 1. 使用 @ApiOperation + 非 @GetMapping
- * 2. 使用 @OperateLog 注解
- * <p>
- * 但是，如果声明 @OperateLog 注解时，将 enable 属性设置为 false 时，强制不记录。
  *
  * @author craftsman4j
  */
@@ -67,19 +65,11 @@ public class OperateLogAspect {
     @Resource
     private OperateLogFrameworkService operateLogFrameworkService;
 
-    @Around("@annotation(operation)")
-    public Object around(ProceedingJoinPoint joinPoint, Operation operation) throws Throwable {
-        // 可能也添加了 @ApiOperation 注解
-        OperateLog operateLog = getMethodAnnotation(joinPoint,
-                OperateLog.class);
+    @Around("@annotation(operateLog)")
+    public Object around(ProceedingJoinPoint joinPoint, OperateLog operateLog) throws Throwable {
+        // 可能添加了 @ApiOperation 注解
+        Operation operation = getMethodAnnotation(joinPoint, Operation.class);
         return around0(joinPoint, operateLog, operation);
-    }
-
-    @Around("!@annotation(io.swagger.v3.oas.annotations.Operation) && @annotation(operateLog)")
-    // 兼容处理，只添加 @OperateLog 注解的情况
-    public Object around(ProceedingJoinPoint joinPoint,
-                         OperateLog operateLog) throws Throwable {
-        return around0(joinPoint, operateLog, null);
     }
 
     private Object around0(ProceedingJoinPoint joinPoint,
@@ -258,9 +248,9 @@ public class OperateLogAspect {
             return null;
         }
         return Arrays.stream(requestMethods).filter(requestMethod ->
-                requestMethod == RequestMethod.POST
-                        || requestMethod == RequestMethod.PUT
-                        || requestMethod == RequestMethod.DELETE)
+                        requestMethod == RequestMethod.POST
+                                || requestMethod == RequestMethod.PUT
+                                || requestMethod == RequestMethod.DELETE)
                 .findFirst().orElse(null);
     }
 
