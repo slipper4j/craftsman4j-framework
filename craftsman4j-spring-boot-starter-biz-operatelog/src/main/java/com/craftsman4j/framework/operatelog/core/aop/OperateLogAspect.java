@@ -9,8 +9,8 @@ import com.craftsman4j.framework.common.pojo.CommonResult;
 import com.craftsman4j.framework.common.util.json.JsonUtils;
 import com.craftsman4j.framework.common.util.monitor.TracerUtils;
 import com.craftsman4j.framework.common.util.servlet.ServletUtils;
-import com.craftsman4j.framework.operatelog.core.annotations.OperateLog;
 import com.craftsman4j.framework.operatelog.core.enums.OperateTypeEnum;
+import com.craftsman4j.framework.operatelog.core.service.OperateLog;
 import com.craftsman4j.framework.operatelog.core.service.OperateLogFrameworkService;
 import com.craftsman4j.framework.web.core.util.WebFrameworkUtils;
 import com.google.common.collect.Maps;
@@ -52,13 +52,13 @@ public class OperateLogAspect {
     /**
      * 用于记录操作内容的上下文
      *
-     * @see com.craftsman4j.framework.operatelog.core.service.OperateLog#getContent()
+     * @see OperateLog#getContent()
      */
     private static final ThreadLocal<String> CONTENT = new ThreadLocal<>();
     /**
      * 用于记录拓展字段的上下文
      *
-     * @see com.craftsman4j.framework.operatelog.core.service.OperateLog#getExts()
+     * @see OperateLog#getExts()
      */
     private static final ThreadLocal<Map<String, Object>> EXTS = new ThreadLocal<>();
 
@@ -66,14 +66,14 @@ public class OperateLogAspect {
     private OperateLogFrameworkService operateLogFrameworkService;
 
     @Around("@annotation(operateLog)")
-    public Object around(ProceedingJoinPoint joinPoint, OperateLog operateLog) throws Throwable {
+    public Object around(ProceedingJoinPoint joinPoint, com.craftsman4j.framework.operatelog.core.annotations.OperateLog operateLog) throws Throwable {
         // 可能添加了 @ApiOperation 注解
         Operation operation = getMethodAnnotation(joinPoint, Operation.class);
         return around0(joinPoint, operateLog, operation);
     }
 
     private Object around0(ProceedingJoinPoint joinPoint,
-                           OperateLog operateLog,
+                           com.craftsman4j.framework.operatelog.core.annotations.OperateLog operateLog,
                            Operation operation) throws Throwable {
         // 记录开始时间
         LocalDateTime startTime = LocalDateTime.now();
@@ -108,7 +108,7 @@ public class OperateLogAspect {
     }
 
     private void log(ProceedingJoinPoint joinPoint,
-                     OperateLog operateLog,
+                     com.craftsman4j.framework.operatelog.core.annotations.OperateLog operateLog,
                      Operation operation,
                      LocalDateTime startTime, Object result, Throwable exception) {
         try {
@@ -125,10 +125,10 @@ public class OperateLogAspect {
     }
 
     private void log0(ProceedingJoinPoint joinPoint,
-                      OperateLog operateLog,
+                      com.craftsman4j.framework.operatelog.core.annotations.OperateLog operateLog,
                       Operation operation,
                       LocalDateTime startTime, Object result, Throwable exception) {
-        com.craftsman4j.framework.operatelog.core.service.OperateLog operateLogObj = new com.craftsman4j.framework.operatelog.core.service.OperateLog();
+        OperateLog operateLogObj = new OperateLog();
         // 补全通用字段
         operateLogObj.setTraceId(TracerUtils.getTraceId());
         operateLogObj.setStartTime(startTime);
@@ -145,14 +145,14 @@ public class OperateLogAspect {
         operateLogFrameworkService.createOperateLog(operateLogObj);
     }
 
-    private static void fillUserFields(com.craftsman4j.framework.operatelog.core.service.OperateLog operateLogObj) {
+    private static void fillUserFields(OperateLog operateLogObj) {
         operateLogObj.setUserId(WebFrameworkUtils.getLoginUserId());
         operateLogObj.setUserType(WebFrameworkUtils.getLoginUserType());
     }
 
-    private static void fillModuleFields(com.craftsman4j.framework.operatelog.core.service.OperateLog operateLogObj,
+    private static void fillModuleFields(OperateLog operateLogObj,
                                          ProceedingJoinPoint joinPoint,
-                                         OperateLog operateLog,
+                                         com.craftsman4j.framework.operatelog.core.annotations.OperateLog operateLog,
                                          Operation operation) {
         // module 属性
         if (operateLog != null) {
@@ -192,7 +192,7 @@ public class OperateLogAspect {
         operateLogObj.setExts(EXTS.get());
     }
 
-    private static void fillRequestFields(com.craftsman4j.framework.operatelog.core.service.OperateLog operateLogObj) {
+    private static void fillRequestFields(OperateLog operateLogObj) {
         // 获得 Request 对象
         HttpServletRequest request = ServletUtils.getRequest();
         if (request == null) {
@@ -205,9 +205,9 @@ public class OperateLogAspect {
         operateLogObj.setUserAgent(ServletUtils.getUserAgent(request));
     }
 
-    private static void fillMethodFields(com.craftsman4j.framework.operatelog.core.service.OperateLog operateLogObj,
+    private static void fillMethodFields(OperateLog operateLogObj,
                                          ProceedingJoinPoint joinPoint,
-                                         OperateLog operateLog,
+                                         com.craftsman4j.framework.operatelog.core.annotations.OperateLog operateLog,
                                          LocalDateTime startTime, Object result, Throwable exception) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         operateLogObj.setJavaMethod(methodSignature.toString());
@@ -234,7 +234,7 @@ public class OperateLogAspect {
     }
 
     private static boolean isLogEnable(ProceedingJoinPoint joinPoint,
-                                       OperateLog operateLog) {
+                                       com.craftsman4j.framework.operatelog.core.annotations.OperateLog operateLog) {
         // 有 @OperateLog 注解的情况下
         if (operateLog != null) {
             return operateLog.enable();
