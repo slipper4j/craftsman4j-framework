@@ -1,6 +1,5 @@
 package com.craftsman4j.framework.common.exception;
 
-import com.craftsman4j.framework.common.exception.enums.ServiceErrorCodeRange;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,7 +13,7 @@ public final class ServiceException extends RuntimeException {
     /**
      * 业务错误码
      *
-     * @see ServiceErrorCodeRange
+     * ServiceErrorCodeRange
      */
     private Integer code;
     /**
