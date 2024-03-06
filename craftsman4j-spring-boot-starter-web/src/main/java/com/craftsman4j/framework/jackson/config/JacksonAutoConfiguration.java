@@ -13,7 +13,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,7 +24,7 @@ import java.util.List;
 @Slf4j
 public class JacksonAutoConfiguration {
 
-    @Bean
+    @ConditionalOnMissingBean(ObjectMapper.class)
     @SuppressWarnings("InstantiationOfUtilityClass")
     public JsonUtils jsonUtils(List<ObjectMapper> objectMappers) {
         // 1.1 创建 SimpleModule 对象
