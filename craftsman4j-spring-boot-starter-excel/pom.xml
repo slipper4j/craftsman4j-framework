@@ -20,13 +20,6 @@
             <artifactId>craftsman4j-common</artifactId>
         </dependency>
 
-        <!-- 业务组件 -->
-        <dependency>
-            <groupId>com.craftsman4j.framework</groupId>
-            <artifactId>craftsman4j-spring-boot-starter-biz-dict</artifactId>
-            <optional>true</optional> <!-- 如果希望使用 @DictFormat 注解，需要引入该依赖 -->
-        </dependency>
-
         <!-- Web 相关 -->
         <dependency>
             <groupId>org.springframework</groupId>

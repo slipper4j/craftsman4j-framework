@@ -97,22 +97,12 @@
             </dependency>
             <dependency>
                 <groupId>com.craftsman4j.framework</groupId>
-                <artifactId>craftsman4j-spring-boot-starter-biz-dict</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.craftsman4j.framework</groupId>
                 <artifactId>craftsman4j-spring-boot-starter-biz-tenant</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.craftsman4j.framework</groupId>
                 <artifactId>craftsman4j-spring-boot-starter-biz-data-permission</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.craftsman4j.framework</groupId>
-                <artifactId>craftsman4j-spring-boot-starter-biz-ip</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
