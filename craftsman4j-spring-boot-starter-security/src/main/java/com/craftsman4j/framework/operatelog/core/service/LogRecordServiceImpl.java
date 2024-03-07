@@ -17,7 +17,7 @@ import java.util.List;
  * <p>
  * 基于 {@link } 实现，记录操作日志
  *
- * @author HUIHUI
+ * @author craftsman4j
  */
 @Slf4j
 public class LogRecordServiceImpl implements ILogRecordService {

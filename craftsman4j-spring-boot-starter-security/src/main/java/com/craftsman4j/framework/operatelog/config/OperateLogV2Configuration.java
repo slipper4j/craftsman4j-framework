@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Primary;
 /**
  * 操作日志配置类
  *
- * @author HUIHUI
+ * @author craftsman4j
  */
 @EnableLogRecord(tenant = "") // 貌似用不上 tenant 这玩意给个空好啦
 @AutoConfiguration
