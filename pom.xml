@@ -50,8 +50,8 @@
     </modules>
 
     <properties>
-        <revision>0.1.0-SNAPSHOT</revision>
-        <craftsman4jdependencies.version>0.1.0-SNAPSHOT</craftsman4jdependencies.version>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <craftsman4jdependencies.version>1.0.0-SNAPSHOT</craftsman4jdependencies.version>
 
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
