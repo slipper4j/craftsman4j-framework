@@ -22,7 +22,7 @@ public class JobRespVO {
     @Schema(description = "处理器的名字", requiredMode = Schema.RequiredMode.REQUIRED, example = "sysUserSessionTimeoutJob")
     private String handlerName;
 
-    @Schema(description = "处理器的参数", example = "yudao")
+    @Schema(description = "处理器的参数", example = "")
     private String handlerParam;
 
     @Schema(description = "CRON 表达式", requiredMode = Schema.RequiredMode.REQUIRED, example = "0/10 * * * * ? *")

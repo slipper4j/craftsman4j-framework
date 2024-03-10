@@ -12,8 +12,6 @@ import com.baomidou.mybatisplus.extension.incrementer.PostgreKeyGenerator;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.craftsman4j.framework.mybatis.core.handler.DefaultDBFieldHandler;
-import org.apache.ibatis.annotations.Mapper;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -26,8 +24,8 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * @author craftsman4j
  */
 @AutoConfiguration
-@MapperScan(value = "${craftsman4j.info.base-package}", annotationClass = Mapper.class,
-        lazyInitialization = "${mybatis.lazy-initialization:false}") // Mapper 懒加载，目前仅用于单元测试
+//@MapperScan(value = "${craftsman4j.info.base-package}", annotationClass = Mapper.class,
+//        lazyInitialization = "${mybatis.lazy-initialization:false}") // Mapper 懒加载，目前仅用于单元测试
 public class MybatisAutoConfiguration {
 
     @Bean

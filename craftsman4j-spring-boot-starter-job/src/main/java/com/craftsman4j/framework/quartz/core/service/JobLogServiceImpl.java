@@ -5,12 +5,12 @@ import com.craftsman4j.framework.quartz.core.enums.JobLogStatusEnum;
 import com.craftsman4j.framework.quartz.core.mapper.JobLogMapper;
 import com.craftsman4j.framework.quartz.core.pojo.JobLogDO;
 import com.craftsman4j.framework.quartz.core.vo.JobLogPageReqVO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.time.LocalDateTime;
 
 /**
@@ -18,13 +18,12 @@ import java.time.LocalDateTime;
  *
  * @author craftsman4j
  */
-@Service
+@RequiredArgsConstructor
 @Validated
 @Slf4j
 public class JobLogServiceImpl implements JobLogService {
 
-    @Resource
-    private JobLogMapper jobLogMapper;
+    private final JobLogMapper jobLogMapper;
 
     @Override
     public Long createJobLog(Long jobId, LocalDateTime beginTime,

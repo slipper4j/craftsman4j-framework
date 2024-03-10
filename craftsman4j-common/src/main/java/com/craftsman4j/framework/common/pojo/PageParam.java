@@ -33,4 +33,7 @@ public class PageParam implements Serializable {
     @Max(value = 100, message = "每页条数最大值为 100")
     private Integer pageSize = PAGE_SIZE;
 
+    @Schema(description = "排序字段", requiredMode = Schema.RequiredMode.REQUIRED, example = "[id asc,create_time desc]")
+    private String[] orders;
+
 }

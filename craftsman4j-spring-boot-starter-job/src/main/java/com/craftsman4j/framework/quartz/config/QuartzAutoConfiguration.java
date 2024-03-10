@@ -2,6 +2,7 @@ package com.craftsman4j.framework.quartz.config;
 
 import com.craftsman4j.framework.quartz.core.scheduler.SchedulerManager;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.quartz.Scheduler;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @AutoConfiguration
 @EnableScheduling // 开启 Spring 自带的定时任务
 @Slf4j
+@MapperScan(value = "com.craftsman4j.framework.quartz.core.mapper")
 public class QuartzAutoConfiguration {
 
     @Bean

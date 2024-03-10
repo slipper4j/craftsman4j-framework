@@ -18,7 +18,7 @@ public class JobLogRespVO {
     @Schema(description = "处理器的名字", requiredMode = Schema.RequiredMode.REQUIRED, example = "sysUserSessionTimeoutJob")
     private String handlerName;
 
-    @Schema(description = "处理器的参数", example = "yudao")
+    @Schema(description = "处理器的参数", example = "")
     private String handlerParam;
 
     @Schema(description = "第几次执行", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")

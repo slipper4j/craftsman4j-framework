@@ -9,12 +9,10 @@ import com.craftsman4j.framework.quartz.core.scheduler.SchedulerManager;
 import com.craftsman4j.framework.quartz.core.util.CronUtils;
 import com.craftsman4j.framework.quartz.core.vo.JobPageReqVO;
 import com.craftsman4j.framework.quartz.core.vo.JobSaveReqVO;
+import lombok.RequiredArgsConstructor;
 import org.quartz.SchedulerException;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
-
-import javax.annotation.Resource;
 
 import static com.craftsman4j.framework.common.exception.util.ServiceExceptionUtils.exception;
 import static com.craftsman4j.framework.common.util.collection.CollectionUtils.containsAny;
@@ -25,15 +23,13 @@ import static com.craftsman4j.framework.quartz.core.enums.JobErrorCodeConstants.
  *
  * @author craftsman4j
  */
-@Service
+@RequiredArgsConstructor
 @Validated
 public class JobServiceImpl implements JobService {
 
-    @Resource
-    private JobMapper jobMapper;
+    private final JobMapper jobMapper;
 
-    @Resource
-    private SchedulerManager schedulerManager;
+    private final SchedulerManager schedulerManager;
 
     @Override
     @Transactional(rollbackFor = Exception.class)

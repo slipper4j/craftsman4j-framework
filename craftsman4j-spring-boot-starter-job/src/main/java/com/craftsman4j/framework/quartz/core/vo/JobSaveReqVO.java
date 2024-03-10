@@ -21,7 +21,7 @@ public class JobSaveReqVO {
     @NotEmpty(message = "处理器的名字不能为空")
     private String handlerName;
 
-    @Schema(description = "处理器的参数", example = "yudao")
+    @Schema(description = "处理器的参数", example = "")
     private String handlerParam;
 
     @Schema(description = "CRON 表达式", requiredMode = Schema.RequiredMode.REQUIRED, example = "0/10 * * * * ? *")
