@@ -21,6 +21,11 @@
             <artifactId>craftsman4j-common</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.craftsman4j.framework</groupId>
+            <artifactId>craftsman4j-spring-boot-starter-dict</artifactId>
+        </dependency>
+
         <!-- Web 相关 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

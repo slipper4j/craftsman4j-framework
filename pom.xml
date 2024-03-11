@@ -37,8 +37,9 @@
         <module>craftsman4j-spring-boot-starter-mq</module>
         <module>craftsman4j-spring-boot-starter-ttl</module>
 
-        <module>craftsman4j-spring-boot-starter-file</module>
         <module>craftsman4j-spring-boot-starter-monitor</module>
+        <module>craftsman4j-spring-boot-starter-file</module>
+        <module>craftsman4j-spring-boot-starter-dict</module>
         <module>craftsman4j-spring-boot-starter-excel</module>
 
         <module>craftsman4j-spring-boot-starter-biz-operatelog</module>

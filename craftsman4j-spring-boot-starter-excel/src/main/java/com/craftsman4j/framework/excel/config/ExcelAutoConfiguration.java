@@ -5,6 +5,7 @@ import com.craftsman4j.framework.excel.core.ExcelWriteLifecycle;
 import com.craftsman4j.framework.excel.core.util.ExcelUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @author zhougang
  * @since 2023/7/24 15:40
  */
+@AutoConfiguration
 public class ExcelAutoConfiguration implements InitializingBean {
 
     @Autowired(required = false)

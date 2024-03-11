@@ -20,6 +20,11 @@
             <artifactId>craftsman4j-common</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.craftsman4j.framework</groupId>
+            <artifactId>craftsman4j-spring-boot-starter-dict</artifactId>
+        </dependency>
+
         <!-- Web 相关 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -44,11 +49,6 @@
             <artifactId>easyexcel</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <scope>provided</scope> <!-- 设置为 provided，只有工具类需要使用到 -->
-        </dependency>
     </dependencies>
 
 </project>

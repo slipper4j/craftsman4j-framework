@@ -381,6 +381,12 @@
 
             <dependency>
                 <groupId>com.craftsman4j.framework</groupId>
+                <artifactId>craftsman4j-spring-boot-starter-dict</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.craftsman4j.framework</groupId>
                 <artifactId>craftsman4j-spring-boot-starter-excel</artifactId>
                 <version>${revision}</version>
             </dependency>
