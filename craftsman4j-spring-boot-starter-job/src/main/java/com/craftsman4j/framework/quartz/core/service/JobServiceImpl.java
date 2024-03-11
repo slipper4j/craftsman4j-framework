@@ -4,7 +4,7 @@ import com.craftsman4j.framework.common.pojo.PageResult;
 import com.craftsman4j.framework.common.util.object.BeanUtils;
 import com.craftsman4j.framework.quartz.core.enums.JobStatusEnum;
 import com.craftsman4j.framework.quartz.core.mapper.JobMapper;
-import com.craftsman4j.framework.quartz.core.pojo.JobDO;
+import com.craftsman4j.framework.quartz.core.dos.JobDO;
 import com.craftsman4j.framework.quartz.core.scheduler.SchedulerManager;
 import com.craftsman4j.framework.quartz.core.util.CronUtils;
 import com.craftsman4j.framework.quartz.core.vo.JobPageReqVO;

@@ -1,4 +1,4 @@
-package com.craftsman4j.framework.quartz.core.pojo;
+package com.craftsman4j.framework.quartz.core.dos;
 
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;

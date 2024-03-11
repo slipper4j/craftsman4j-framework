@@ -3,7 +3,7 @@ package com.craftsman4j.framework.quartz.core.mapper;
 import com.craftsman4j.framework.common.pojo.PageResult;
 import com.craftsman4j.framework.mybatis.core.mapper.BaseMapperX;
 import com.craftsman4j.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.craftsman4j.framework.quartz.core.pojo.JobDO;
+import com.craftsman4j.framework.quartz.core.dos.JobDO;
 import com.craftsman4j.framework.quartz.core.vo.JobPageReqVO;
 import org.apache.ibatis.annotations.Mapper;
 
