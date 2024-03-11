@@ -1,4 +1,4 @@
-package com.craftsman4j.framework.jackson.core.annotations;
+package com.craftsman4j.framework.dict.core.annotations;
 
 import java.lang.annotation.*;
 

@@ -1,7 +1,7 @@
 package com.craftsman4j.framework.jackson.core.databind;
 
 import com.craftsman4j.framework.dict.core.util.DictFrameworkUtils;
-import com.craftsman4j.framework.jackson.core.annotations.Dict;
+import com.craftsman4j.framework.dict.core.annotations.Dict;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.JsonMappingException;
