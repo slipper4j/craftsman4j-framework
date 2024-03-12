@@ -76,7 +76,6 @@
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <scope>provided</scope> <!-- 只有 PageHelperUtils 工具类用到 -->
         </dependency>
     </dependencies>
 
