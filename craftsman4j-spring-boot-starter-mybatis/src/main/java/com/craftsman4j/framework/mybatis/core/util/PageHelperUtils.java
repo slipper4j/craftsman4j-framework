@@ -18,12 +18,6 @@ import java.util.stream.Collectors;
 
 public class PageHelperUtils {
 
-    public static final String PAGE_NUM = "pageNum";
-
-    public static final String PAGE_SIZE = "pageSize";
-
-    public static final String ORDERS = "orders";
-
     public static <T> Page<T> startPage(PageParam pageParam) {
         return startPage(pageParam, null);
     }
@@ -41,7 +35,7 @@ public class PageHelperUtils {
         SortablePageParam sortablePageParam;
         if (pageParam instanceof SortablePageParam &&
                 CollUtil.isNotEmpty((sortablePageParam = (SortablePageParam) pageParam).getSortingFields())) {
-            page = PageHelper.startPage(pageParam.getPageNo(), pageParam.getPageSize(), orderBy(sortablePageParam.getSortingFields(), orderFieldMap));
+            page = PageHelper.startPage(pageParam.getPageNo(), pageParam.getPageSize(), filterOrderBy(sortablePageParam.getSortingFields(), orderFieldMap));
         } else {
             page = PageHelper.startPage(pageParam.getPageNo(), pageParam.getPageSize());
         }
@@ -65,7 +59,14 @@ public class PageHelperUtils {
      */
     public static final String FIELD_REGEXP = "([a-zA-Z0-9_]+)";
 
-    private static String orderBy(List<SortingField> sortingFields, Map<String, String> columnsMap) {
+    /**
+     * 过滤排序字段，防止SQL注入
+     *
+     * @param sortingFields sortingFields
+     * @param columnsMap    columnsMap
+     * @return
+     */
+    public static String filterOrderBy(List<SortingField> sortingFields, Map<String, String> columnsMap) {
         if (CollUtil.isEmpty(sortingFields)) {
             return "";
         }
