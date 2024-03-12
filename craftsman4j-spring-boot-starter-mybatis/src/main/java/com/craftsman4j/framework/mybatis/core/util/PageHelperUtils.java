@@ -1,7 +1,6 @@
 package com.craftsman4j.framework.mybatis.core.util;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.StrUtil;
 import com.craftsman4j.framework.common.pojo.PageParam;
 import com.craftsman4j.framework.common.pojo.PageResult;
 import com.craftsman4j.framework.common.pojo.SortablePageParam;
@@ -13,7 +12,6 @@ import com.github.pagehelper.PageInfo;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class PageHelperUtils {
@@ -79,9 +77,9 @@ public class PageHelperUtils {
                 throw new IllegalArgumentException("非法的排序策略：" + orderType);
             }
             // 判断列名称的合法性，防止SQL注入。只能是【字母，数字，下划线】
-            if (!Pattern.matches(FIELD_REGEXP, field)) {
-                throw new IllegalArgumentException("非法的排序字段名称：" + field);
-            }
+            //if (!Pattern.matches(FIELD_REGEXP, field)) {
+            //    throw new IllegalArgumentException("非法的排序字段名称：" + field);
+            //}
             if (i != 0) {
                 stringBuilder.append(", ");
             }
@@ -89,9 +87,9 @@ public class PageHelperUtils {
                 stringBuilder.append(columnsMap.get(field));
             } else {
                 // 驼峰转换为下划线
-                stringBuilder.append("`").append(StrUtil.toUnderlineCase(field)).append("`");
+                stringBuilder.append("`").append(field).append("`");
             }
-            stringBuilder.append(" ").append(order);
+            stringBuilder.append(" ").append(orderType);
         }
         return stringBuilder.toString();
     }
