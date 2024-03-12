@@ -1,7 +1,7 @@
 package com.craftsman4j.framework.quartz.core.service;
 
 import com.craftsman4j.framework.common.pojo.PageResult;
-import com.craftsman4j.framework.quartz.core.dos.JobDO;
+import com.craftsman4j.framework.quartz.core.pojo.JobDO;
 import com.craftsman4j.framework.quartz.core.vo.JobPageReqVO;
 import com.craftsman4j.framework.quartz.core.vo.JobSaveReqVO;
 import org.quartz.SchedulerException;

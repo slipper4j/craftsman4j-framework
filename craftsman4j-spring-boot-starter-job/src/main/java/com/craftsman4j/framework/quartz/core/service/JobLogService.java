@@ -1,7 +1,7 @@
 package com.craftsman4j.framework.quartz.core.service;
 
 import com.craftsman4j.framework.common.pojo.PageResult;
-import com.craftsman4j.framework.quartz.core.dos.JobLogDO;
+import com.craftsman4j.framework.quartz.core.pojo.JobLogDO;
 import com.craftsman4j.framework.quartz.core.vo.JobLogPageReqVO;
 
 /**

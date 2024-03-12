@@ -3,7 +3,7 @@ package com.craftsman4j.framework.quartz.core.service;
 import com.craftsman4j.framework.common.pojo.PageResult;
 import com.craftsman4j.framework.quartz.core.enums.JobLogStatusEnum;
 import com.craftsman4j.framework.quartz.core.mapper.JobLogMapper;
-import com.craftsman4j.framework.quartz.core.dos.JobLogDO;
+import com.craftsman4j.framework.quartz.core.pojo.JobLogDO;
 import com.craftsman4j.framework.quartz.core.vo.JobLogPageReqVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
