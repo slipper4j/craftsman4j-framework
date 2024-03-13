@@ -5,6 +5,7 @@ import com.craftsman4j.framework.common.pojo.TreeNode;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,7 +29,7 @@ public class TreeUtils {
      */
     public static <V, T extends TreeNode<V, T>> List<T> buildTree(List<T> nodes, Predicate<T> rootPredicate) {
         // 第 1 步：将节点存储在映射中
-        Map<V, T> nodeMap = nodes.stream().collect(Collectors.toMap(T::getId, Function.identity()));
+        Map<V, T> nodeMap = nodes.stream().collect(Collectors.toMap(T::getId, Function.identity(), (a, b) -> a, LinkedHashMap::new));
 
         // 第 2 步：设置父子关系
         for (T node : nodes) {
