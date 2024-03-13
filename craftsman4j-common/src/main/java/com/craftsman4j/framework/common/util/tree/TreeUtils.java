@@ -1,6 +1,7 @@
 package com.craftsman4j.framework.common.util.tree;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.craftsman4j.framework.common.pojo.TreeNode;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -119,15 +120,5 @@ public class TreeUtils {
             }
         }
         return null;
-    }
-
-    public interface TreeNode<V, T extends TreeNode<V, T>> {
-        V getId();
-
-        V getParentId();
-
-        List<T> getChildren();
-
-        void setChildren(List<T> children);
     }
 }
