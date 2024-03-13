@@ -14,6 +14,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * @author zhougang
+ */
 public class PageHelperUtils {
 
     public static <T> Page<T> startPage(PageParam pageParam) {
@@ -40,7 +43,7 @@ public class PageHelperUtils {
         return page;
     }
 
-    public static <T> PageResult<T> toResult(List<T> pageList) {
+    public static <T> PageResult<T> toPageResult(List<T> pageList) {
         PageInfo<T> pageInfo = new PageInfo<>(pageList);
         PageResult<T> pageResult = new PageResult<>();
         pageResult.setTotal(pageInfo.getTotal());
@@ -48,8 +51,8 @@ public class PageHelperUtils {
         return pageResult;
     }
 
-    public static <T, R> PageResult<R> toResult(List<T> pageList, Function<? super T, ? extends R> mapper) {
-        return toResult(pageList.stream().map(mapper).collect(Collectors.toList()));
+    public static <T, R> PageResult<R> toPageResult(List<T> pageList, Function<? super T, ? extends R> mapper) {
+        return toPageResult(pageList.stream().map(mapper).collect(Collectors.toList()));
     }
 
     /**
