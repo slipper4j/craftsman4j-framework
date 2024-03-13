@@ -1,7 +1,7 @@
 package com.craftsman4j.framework.security.config;
 
 import com.craftsman4j.framework.security.core.PermissionApi;
-import com.craftsman4j.framework.security.core.UserTokenApi;
+import com.craftsman4j.framework.security.core.OAuth2TokenApi;
 import com.craftsman4j.framework.security.core.aop.PreAuthenticatedAspect;
 import com.craftsman4j.framework.security.core.context.TransmittableThreadLocalSecurityContextHolderStrategy;
 import com.craftsman4j.framework.security.core.filter.AbstractTokenAuthenticationFilter;
@@ -80,8 +80,8 @@ public class SecurityAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(AbstractTokenAuthenticationFilter.class)
     public AbstractTokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler,
-                                                                       UserTokenApi userTokenApi) {
-        return new DefaultTokenAuthenticationFilter(securityProperties, globalExceptionHandler, userTokenApi);
+                                                                       OAuth2TokenApi auth2TokenApi) {
+        return new DefaultTokenAuthenticationFilter(securityProperties, globalExceptionHandler, auth2TokenApi);
     }
 
     @Bean("ss") // 使用 Spring Security 的缩写，方便使用

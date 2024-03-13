@@ -1,12 +1,12 @@
 package com.craftsman4j.framework.operatelog.core.service;
 
 import cn.hutool.extra.spring.SpringUtil;
+import com.craftsman4j.framework.security.core.LoginUser;
 import com.craftsman4j.framework.security.core.util.SecurityFrameworkUtils;
 import com.mzt.logapi.beans.LogRecord;
 import com.mzt.logapi.service.ILogRecordService;
 import com.craftsman4j.framework.common.util.monitor.TracerUtils;
 import com.craftsman4j.framework.common.util.servlet.ServletUtils;
-import com.craftsman4j.framework.security.core.ILoginUser;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +42,7 @@ public class LogRecordServiceImpl implements ILogRecordService {
 
     private static void fillUserFields(OperateLog reqDTO) {
         // 使用 SecurityFrameworkUtils。因为要考虑，rpc、mq、job，它其实不是 web；
-        ILoginUser loginUser = SecurityFrameworkUtils.getLoginUser();
+        LoginUser loginUser = SecurityFrameworkUtils.getLoginUser();
         if (loginUser == null) {
             return;
         }

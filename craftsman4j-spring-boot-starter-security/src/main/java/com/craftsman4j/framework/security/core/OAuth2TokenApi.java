@@ -6,7 +6,7 @@ package com.craftsman4j.framework.security.core;
  * @author zhougang
  * @since 2023/5/30 13:27
  */
-public interface UserTokenApi {
+public interface OAuth2TokenApi {
 
     /**
      * 根据令牌token, 获取登录用户
@@ -14,5 +14,5 @@ public interface UserTokenApi {
      * @param token token
      * @return 登录用户
      */
-    ILoginUser getLoginUser(String token);
+    LoginUser getLoginUser(String token);
 }

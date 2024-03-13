@@ -1,9 +1,8 @@
 package com.craftsman4j.framework.security.core.service;
 
-import cn.hutool.core.collection.CollUtil;
+import com.craftsman4j.framework.security.core.LoginUser;
 import com.craftsman4j.framework.security.core.util.SecurityFrameworkUtils;
 import com.craftsman4j.framework.security.core.PermissionApi;
-import com.craftsman4j.framework.security.core.ILoginUser;
 import lombok.AllArgsConstructor;
 
 import java.util.Arrays;
@@ -25,14 +24,14 @@ public class SecurityFrameworkServiceImpl implements SecurityFrameworkService {
 
     @Override
     public boolean hasAnyPermissions(String... permissions) {
-        ILoginUser user = SecurityFrameworkUtils.getLoginUser();
+        LoginUser user = SecurityFrameworkUtils.getLoginUser();
         if (user == null) {
             return false;
         }
         // ILoginUser有permissions则优先用permission匹配
-        if (CollUtil.isNotEmpty(user.getPermissions())) {
-            return CollUtil.containsAny(user.getPermissions(), Arrays.asList(permissions));
-        }
+//        if (CollUtil.isNotEmpty(user.getPermissions())) {
+//            return CollUtil.containsAny(user.getPermissions(), Arrays.asList(permissions));
+//        }
         return permissionApi.hasAnyPermissions(user.getId(), permissions);
     }
 

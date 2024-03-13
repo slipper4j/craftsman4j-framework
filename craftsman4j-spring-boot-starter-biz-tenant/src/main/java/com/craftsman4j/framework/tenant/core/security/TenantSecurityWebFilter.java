@@ -4,14 +4,14 @@ import cn.hutool.core.collection.CollUtil;
 import com.craftsman4j.framework.common.exception.enums.GlobalErrorCodeConstants;
 import com.craftsman4j.framework.common.pojo.CommonResult;
 import com.craftsman4j.framework.common.util.servlet.ServletUtils;
-import com.craftsman4j.framework.security.core.ILoginUser;
+import com.craftsman4j.framework.security.core.LoginUser;
 import com.craftsman4j.framework.security.core.util.SecurityFrameworkUtils;
+import com.craftsman4j.framework.tenant.config.TenantProperties;
 import com.craftsman4j.framework.tenant.core.context.TenantContextHolder;
 import com.craftsman4j.framework.tenant.core.service.TenantFrameworkService;
 import com.craftsman4j.framework.web.config.WebProperties;
 import com.craftsman4j.framework.web.core.filter.ApiRequestFilter;
 import com.craftsman4j.framework.web.core.handler.GlobalExceptionHandler;
-import com.craftsman4j.framework.tenant.config.TenantProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
 
@@ -56,13 +56,13 @@ public class TenantSecurityWebFilter extends ApiRequestFilter {
             throws ServletException, IOException {
         Long tenantId = TenantContextHolder.getTenantId();
         // 1. 登陆的用户，校验是否有权限访问该租户，避免越权问题。
-        ILoginUser user = SecurityFrameworkUtils.getLoginUser();
+        LoginUser user = SecurityFrameworkUtils.getLoginUser();
         if (user != null) {
             // 如果获取不到租户编号，则尝试使用登陆用户的租户编号
             if (tenantId == null) {
                 tenantId = user.getTenantId();
                 TenantContextHolder.setTenantId(tenantId);
-            // 如果传递了租户编号，则进行比对租户编号，避免越权问题
+                // 如果传递了租户编号，则进行比对租户编号，避免越权问题
             } else if (!Objects.equals(user.getTenantId(), TenantContextHolder.getTenantId())) {
                 log.error("[doFilterInternal][租户({}) User({}/{}) 越权访问租户({}) URL({}/{})]",
                         user.getTenantId(), user.getId(), user.getUserType(),

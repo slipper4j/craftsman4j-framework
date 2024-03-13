@@ -1,7 +1,7 @@
 package com.craftsman4j.framework.security.core.util;
 
 import cn.hutool.core.util.StrUtil;
-import com.craftsman4j.framework.security.core.ILoginUser;
+import com.craftsman4j.framework.security.core.LoginUser;
 import com.craftsman4j.framework.web.core.util.WebFrameworkUtils;
 import org.springframework.lang.Nullable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -70,12 +70,12 @@ public class SecurityFrameworkUtils {
      * @return 当前用户
      */
     @Nullable
-    public static ILoginUser getLoginUser() {
+    public static LoginUser getLoginUser() {
         Authentication authentication = getAuthentication();
         if (authentication == null) {
             return null;
         }
-        return authentication.getPrincipal() instanceof ILoginUser ? (ILoginUser) authentication.getPrincipal() : null;
+        return authentication.getPrincipal() instanceof LoginUser ? (LoginUser) authentication.getPrincipal() : null;
     }
 
     /**
@@ -85,7 +85,7 @@ public class SecurityFrameworkUtils {
      */
     @Nullable
     public static Long getLoginUserId() {
-        ILoginUser loginUser = getLoginUser();
+        LoginUser loginUser = getLoginUser();
         return loginUser != null ? loginUser.getId() : null;
     }
 
@@ -95,7 +95,7 @@ public class SecurityFrameworkUtils {
      * @param loginUser 登录用户
      * @param request   请求
      */
-    public static void setLoginUser(ILoginUser loginUser, HttpServletRequest request) {
+    public static void setLoginUser(LoginUser loginUser, HttpServletRequest request) {
         // 创建 Authentication，并设置到上下文
         Authentication authentication = buildAuthentication(loginUser, request);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -106,7 +106,7 @@ public class SecurityFrameworkUtils {
         WebFrameworkUtils.setLoginUserType(request, loginUser.getUserType());
     }
 
-    private static Authentication buildAuthentication(ILoginUser loginUser, HttpServletRequest request) {
+    private static Authentication buildAuthentication(LoginUser loginUser, HttpServletRequest request) {
         // 创建 UsernamePasswordAuthenticationToken 对象
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 loginUser, null, Collections.emptyList());

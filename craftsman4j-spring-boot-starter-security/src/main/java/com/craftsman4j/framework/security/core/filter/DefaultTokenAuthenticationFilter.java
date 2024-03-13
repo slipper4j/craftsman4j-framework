@@ -6,8 +6,8 @@ import com.craftsman4j.framework.common.exception.ServiceException;
 import com.craftsman4j.framework.common.pojo.CommonResult;
 import com.craftsman4j.framework.common.util.servlet.ServletUtils;
 import com.craftsman4j.framework.security.config.SecurityProperties;
-import com.craftsman4j.framework.security.core.ILoginUser;
-import com.craftsman4j.framework.security.core.UserTokenApi;
+import com.craftsman4j.framework.security.core.LoginUser;
+import com.craftsman4j.framework.security.core.OAuth2TokenApi;
 import com.craftsman4j.framework.security.core.util.SecurityFrameworkUtils;
 import com.craftsman4j.framework.web.core.handler.GlobalExceptionHandler;
 import com.craftsman4j.framework.web.core.util.WebFrameworkUtils;
@@ -20,13 +20,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Set;
 
 import static com.craftsman4j.framework.common.exception.enums.GlobalErrorCodeConstants.*;
 
 /**
  * Token 过滤器，验证 token 的有效性
- * 验证通过后，获得 {@link ILoginUser} 信息，并加入到 Spring Security 上下文
+ * 验证通过后，获得 {@link LoginUser} 信息，并加入到 Spring Security 上下文
  *
  * @author craftsman4j
  */
@@ -38,7 +37,7 @@ public class DefaultTokenAuthenticationFilter extends AbstractTokenAuthenticatio
 
     private final GlobalExceptionHandler globalExceptionHandler;
 
-    private final UserTokenApi userTokenApi;
+    private final OAuth2TokenApi auth2TokenApi;
 
     @Override
     @SuppressWarnings("NullableProblems")
@@ -50,7 +49,7 @@ public class DefaultTokenAuthenticationFilter extends AbstractTokenAuthenticatio
             Integer userType = WebFrameworkUtils.getLoginUserType(request);
             try {
                 // 1.1 基于 token 构建登录用户
-                ILoginUser loginUser = buildLoginUserByToken(token, userType);
+                LoginUser loginUser = buildLoginUserByToken(token, userType);
                 // 1.2 模拟 Login 功能，方便日常开发调试
                 if (loginUser == null) {
                     loginUser = mockLoginUser(request, token, userType);
@@ -71,9 +70,9 @@ public class DefaultTokenAuthenticationFilter extends AbstractTokenAuthenticatio
         chain.doFilter(request, response);
     }
 
-    private ILoginUser buildLoginUserByToken(String token, Integer userType) {
+    private LoginUser buildLoginUserByToken(String token, Integer userType) {
         try {
-            ILoginUser loginUser = userTokenApi.getLoginUser(token);
+            LoginUser loginUser = auth2TokenApi.getLoginUser(token);
             if (loginUser == null) {
                 return null;
             }
@@ -102,7 +101,7 @@ public class DefaultTokenAuthenticationFilter extends AbstractTokenAuthenticatio
      * @param userType 用户类型
      * @return 模拟的 LoginUser
      */
-    private ILoginUser mockLoginUser(HttpServletRequest request, String token, Integer userType) {
+    private LoginUser mockLoginUser(HttpServletRequest request, String token, Integer userType) {
         if (!securityProperties.getMockEnable()) {
             return null;
         }
@@ -112,27 +111,8 @@ public class DefaultTokenAuthenticationFilter extends AbstractTokenAuthenticatio
         }
         // 构建模拟用户
         Long userId = Long.valueOf(token.substring(securityProperties.getMockSecret().length()));
-        return new ILoginUser() {
-            @Override
-            public Long getId() {
-                return userId;
-            }
-
-            @Override
-            public Integer getUserType() {
-                return userType;
-            }
-
-            @Override
-            public Set<String> getPermissions() {
-                return null;
-            }
-
-            @Override
-            public Long getTenantId() {
-                return WebFrameworkUtils.getTenantId(request);
-            }
-        };
+        return new LoginUser().setId(userId).setUserType(userType)
+                .setTenantId(WebFrameworkUtils.getTenantId(request));
     }
 
     public CommonResult<?> exceptionHandler(HttpServletRequest request, Throwable ex) {
