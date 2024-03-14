@@ -25,12 +25,12 @@ public class LogRecordServiceImpl implements ILogRecordService {
     @Override
     public void record(LogRecord logRecord) {
         // 1. 补全通用字段
-        OperateLog operateLog = new OperateLog();
+        OperateLogV2 operateLog = new OperateLogV2();
         operateLog.setTraceId(TracerUtils.getTraceId());
         // 补充用户信息
         fillUserFields(operateLog);
         // 补全模块信息
-        //fillModuleFields(reqDTO, logRecord);
+        fillModuleFields(operateLog, logRecord);
         // 补全请求信息
         fillRequestFields(operateLog);
 
@@ -40,45 +40,45 @@ public class LogRecordServiceImpl implements ILogRecordService {
         log.info("操作日志 ===> {}", operateLog);
     }
 
-    private static void fillUserFields(OperateLog reqDTO) {
+    private static void fillUserFields(OperateLogV2 operateLog) {
         // 使用 SecurityFrameworkUtils。因为要考虑，rpc、mq、job，它其实不是 web；
         LoginUser loginUser = SecurityFrameworkUtils.getLoginUser();
         if (loginUser == null) {
             return;
         }
-        reqDTO.setUserId(loginUser.getId());
-        reqDTO.setUserType(loginUser.getUserType());
+        operateLog.setUserId(loginUser.getId());
+        operateLog.setUserType(loginUser.getUserType());
     }
 
-    //public static void fillModuleFields(OperateLogV2CreateReqDTO reqDTO, LogRecord logRecord) {
-    //    reqDTO.setType(logRecord.getType()); // 大模块类型，例如：CRM 客户
-    //    reqDTO.setSubType(logRecord.getSubType());// 操作名称，例如：转移客户
-    //    reqDTO.setBizId(Long.parseLong(logRecord.getBizNo())); // 业务编号，例如：客户编号
-    //    reqDTO.setAction(logRecord.getAction());// 操作内容，例如：修改编号为 1 的用户信息，将性别从男改成女，将姓名从芋道改成源码。
-    //    reqDTO.setExtra(logRecord.getExtra()); // 拓展字段，有些复杂的业务，需要记录一些字段 ( JSON 格式 )，例如说，记录订单编号，{ orderId: "1"}
-    //}
+    public static void fillModuleFields(OperateLogV2 operateLog, LogRecord logRecord) {
+        operateLog.setType(logRecord.getType()); // 大模块类型，例如：CRM 客户
+        operateLog.setSubType(logRecord.getSubType());// 操作名称，例如：转移客户
+        operateLog.setBizId(Long.parseLong(logRecord.getBizNo())); // 业务编号，例如：客户编号
+        operateLog.setAction(logRecord.getAction());// 操作内容，例如：修改编号为 1 的用户信息，将性别从男改成女，将姓名从芋道改成源码。
+        operateLog.setExtra(logRecord.getExtra()); // 拓展字段，有些复杂的业务，需要记录一些字段 ( JSON 格式 )，例如说，记录订单编号，{ orderId: "1"}
+    }
 
-    private static void fillRequestFields(OperateLog reqDTO) {
+    private static void fillRequestFields(OperateLogV2 operateLog) {
         // 获得 Request 对象
         HttpServletRequest request = ServletUtils.getRequest();
         if (request == null) {
             return;
         }
         // 补全请求信息
-        reqDTO.setRequestMethod(request.getMethod());
-        reqDTO.setRequestUrl(request.getRequestURI());
-        reqDTO.setUserIp(ServletUtils.getClientIP(request));
-        reqDTO.setUserAgent(ServletUtils.getUserAgent(request));
+        operateLog.setRequestMethod(request.getMethod());
+        operateLog.setRequestUrl(request.getRequestURI());
+        operateLog.setUserIp(ServletUtils.getClientIP(request));
+        operateLog.setUserAgent(ServletUtils.getUserAgent(request));
     }
 
     @Override
     public List<LogRecord> queryLog(String bizNo, String type) {
-        throw new UnsupportedOperationException("使用 OperateLogApi 进行操作日志的查询");
+        throw new UnsupportedOperationException("使用 OperateLogV2Api 进行操作日志的查询");
     }
 
     @Override
     public List<LogRecord> queryLogByBizNo(String bizNo, String type, String subType) {
-        throw new UnsupportedOperationException("使用 OperateLogApi 进行操作日志的查询");
+        throw new UnsupportedOperationException("使用 OperateLogV2Api 进行操作日志的查询");
     }
 
 }
