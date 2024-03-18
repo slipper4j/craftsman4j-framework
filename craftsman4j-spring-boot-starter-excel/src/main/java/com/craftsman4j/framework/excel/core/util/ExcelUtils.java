@@ -37,7 +37,7 @@ public class ExcelUtils {
 
     private static List<ReadListener<Object>> readListeners;
 
-    static public void init(ExcelWriteLifecycle excelWriteLifecycle, List<ReadListener<Object>> readListeners) {
+    public static void init(ExcelWriteLifecycle excelWriteLifecycle, List<ReadListener<Object>> readListeners) {
         ExcelUtils.excelWriteLifecycle = excelWriteLifecycle;
         ExcelUtils.readListeners = readListeners;
         log.info("[init][初始化 ExcelUtils 成功]");

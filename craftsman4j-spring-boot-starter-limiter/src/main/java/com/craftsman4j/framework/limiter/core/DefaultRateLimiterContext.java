@@ -31,8 +31,7 @@ public class DefaultRateLimiterContext implements ApplicationContextAware, Initi
         });
 
 
-        RateLimiterUtils.setRateLimiterContext(this);
-        log.info("[init][初始化 RateLimiterUtils 成功]");
+        RateLimiterUtils.init(this);
     }
 
 

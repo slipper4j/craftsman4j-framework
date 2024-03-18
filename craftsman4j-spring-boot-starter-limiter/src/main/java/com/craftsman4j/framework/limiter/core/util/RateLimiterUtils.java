@@ -4,7 +4,9 @@ import com.craftsman4j.framework.limiter.core.RateLimiterContext;
 import com.craftsman4j.framework.limiter.core.RateLimiterApi;
 import com.craftsman4j.framework.limiter.core.constant.LimiterType;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 /**
@@ -13,10 +15,16 @@ import java.util.function.Supplier;
  * @author zhougang
  * @since 2023/5/15 9:51
  */
+@Slf4j
 public class RateLimiterUtils {
 
     @Setter
     private static RateLimiterContext rateLimiterContext;
+
+    public static void init(RateLimiterContext rateLimiterContext) {
+        RateLimiterUtils.rateLimiterContext = rateLimiterContext;
+        log.info("[init][初始化 RateLimiterUtils 成功]");
+    }
 
     /**
      * 限速工具类方法
