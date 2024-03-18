@@ -26,6 +26,7 @@ public class Lock4jUtils {
      */
     public static void setLockTemplate(LockTemplate lockTemplate) {
         Lock4jUtils.LOCK_TEMPLATE = lockTemplate;
+        log.info("[init][初始化 Lock4jUtils 成功]");
     }
 
     /**

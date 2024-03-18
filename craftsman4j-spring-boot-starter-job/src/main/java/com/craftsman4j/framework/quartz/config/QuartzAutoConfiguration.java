@@ -1,6 +1,10 @@
 package com.craftsman4j.framework.quartz.config;
 
+import com.craftsman4j.framework.quartz.core.mapper.JobLogMapper;
+import com.craftsman4j.framework.quartz.core.mapper.JobMapper;
 import com.craftsman4j.framework.quartz.core.scheduler.SchedulerManager;
+import com.craftsman4j.framework.quartz.core.service.JobLogServiceImpl;
+import com.craftsman4j.framework.quartz.core.service.JobServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.quartz.Scheduler;
@@ -20,9 +24,19 @@ import java.util.Optional;
 public class QuartzAutoConfiguration {
 
     @Bean
+    public JobServiceImpl jobService(JobMapper jobMapper, SchedulerManager schedulerManager) {
+        return new JobServiceImpl(jobMapper, schedulerManager);
+    }
+
+    @Bean
+    public JobLogServiceImpl jobLogService(JobLogMapper jobLogMapper) {
+        return new JobLogServiceImpl(jobLogMapper);
+    }
+
+    @Bean
     public SchedulerManager schedulerManager(Optional<Scheduler> scheduler) {
         if (!scheduler.isPresent()) {
-            log.info("[定时任务 - 已禁用][参考 https://doc.iocoder.cn/job/ 开启]");
+            log.info("[定时任务 - 已禁用]");
             return new SchedulerManager(null);
         }
         return new SchedulerManager(scheduler.get());

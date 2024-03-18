@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * 补充：Spring Security 通过 {@link ExceptionTranslationFilter#sendStartAuthentication(HttpServletRequest, HttpServletResponse, FilterChain, AuthenticationException)} 方法，调用当前类
  *
- * @author ruoyi
+ * @author craftsman4j
  */
 @Slf4j
 @SuppressWarnings("JavadocReference") // 忽略文档引用报错

@@ -3,9 +3,7 @@ package com.craftsman4j.framework.quartz.core.enums;
 import com.craftsman4j.framework.common.exception.ErrorCode;
 
 /**
- * Infra 错误码枚举类
- * <p>
- * infra 系统，使用 1-001-000-000 段
+ * job 错误码枚举类
  */
 public interface JobErrorCodeConstants {
 

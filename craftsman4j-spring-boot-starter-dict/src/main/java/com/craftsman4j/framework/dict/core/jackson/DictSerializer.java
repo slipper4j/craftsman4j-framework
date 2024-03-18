@@ -1,7 +1,7 @@
-package com.craftsman4j.framework.jackson.core.databind;
+package com.craftsman4j.framework.dict.core.jackson;
 
-import com.craftsman4j.framework.dict.core.util.DictFrameworkUtils;
 import com.craftsman4j.framework.dict.core.annotations.Dict;
+import com.craftsman4j.framework.dict.core.util.DictFrameworkUtils;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -35,10 +35,10 @@ public class DictSerializer extends StdSerializer<Object> implements ContextualS
             gen.writeObject(null);
             return;
         }
-        // 通过数据字典类型和value获取name
-        String label = DictFrameworkUtils.getDictDataLabel(dict.type(), value.toString());
         gen.writeObject(value);
+        // 通过数据字典类型和value获取label
         gen.writeFieldName(dict.targetFiled());
+        String label = DictFrameworkUtils.getDictDataLabel(dict.type(), value.toString());
         gen.writeObject(label);
     }
 

@@ -1,4 +1,2 @@
-com.craftsman4j.framework.quartz.core.service.JobServiceImpl
-com.craftsman4j.framework.quartz.core.service.JobLogServiceImpl
 com.craftsman4j.framework.quartz.config.QuartzAutoConfiguration
 com.craftsman4j.framework.quartz.config.AsyncAutoConfiguration

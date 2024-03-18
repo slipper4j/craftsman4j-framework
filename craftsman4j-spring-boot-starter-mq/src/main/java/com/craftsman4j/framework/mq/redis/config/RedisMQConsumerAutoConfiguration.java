@@ -7,7 +7,6 @@ import com.craftsman4j.framework.mq.redis.core.RedisMQTemplate;
 import com.craftsman4j.framework.mq.redis.core.job.RedisPendingMessageResendJob;
 import com.craftsman4j.framework.mq.redis.core.pubsub.AbstractRedisChannelMessageListener;
 import com.craftsman4j.framework.mq.redis.core.stream.AbstractRedisStreamMessageListener;
-import com.craftsman4j.framework.common.enums.DocumentEnum;
 import com.craftsman4j.framework.redis.config.RedisAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RedissonClient;
@@ -143,8 +142,7 @@ public class RedisMQConsumerAutoConfiguration {
         // 校验最低版本必须大于等于 5.0.0
         int majorVersion = Integer.parseInt(StrUtil.subBefore(version, '.', false));
         if (majorVersion < 5) {
-            throw new IllegalStateException(StrUtil.format("您当前的 Redis 版本为 {}，小于最低要求的 5.0.0 版本！" +
-                    "请参考 {} 文档进行安装。", version, DocumentEnum.REDIS_INSTALL.getUrl()));
+            throw new IllegalStateException(StrUtil.format("您当前的 Redis 版本为 {}，小于最低要求的 5.0.0 版本！"));
         }
     }
 

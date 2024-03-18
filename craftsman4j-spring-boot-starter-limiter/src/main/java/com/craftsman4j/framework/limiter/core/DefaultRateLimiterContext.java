@@ -2,6 +2,7 @@ package com.craftsman4j.framework.limiter.core;
 
 import com.craftsman4j.framework.limiter.core.constant.LimiterType;
 import com.craftsman4j.framework.limiter.core.util.RateLimiterUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -14,6 +15,7 @@ import java.util.Map;
  * @author zhougang
  * @since 2023/5/11 14:53
  */
+@Slf4j
 public class DefaultRateLimiterContext implements ApplicationContextAware, InitializingBean, RateLimiterContext {
 
     private ApplicationContext applicationContext;
@@ -30,6 +32,7 @@ public class DefaultRateLimiterContext implements ApplicationContextAware, Initi
 
 
         RateLimiterUtils.setRateLimiterContext(this);
+        log.info("[init][初始化 RateLimiterUtils 成功]");
     }
 
 
