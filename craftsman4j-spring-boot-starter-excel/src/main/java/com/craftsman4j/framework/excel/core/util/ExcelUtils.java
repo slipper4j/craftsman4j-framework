@@ -10,6 +10,7 @@ import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy
 import com.craftsman4j.framework.excel.core.ExcelWriteLifecycle;
 import com.craftsman4j.framework.excel.core.listener.ExcelBatchListener;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +29,7 @@ import java.util.function.Consumer;
  *
  * @author craftsman4j
  */
+@Slf4j
 public class ExcelUtils {
 
     @Setter
@@ -38,6 +40,7 @@ public class ExcelUtils {
     static public void init(ExcelWriteLifecycle excelWriteLifecycle, List<ReadListener<Object>> readListeners) {
         ExcelUtils.excelWriteLifecycle = excelWriteLifecycle;
         ExcelUtils.readListeners = readListeners;
+        log.info("[init][初始化 ExcelUtils 成功]");
     }
 
     /**
