@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
+/**
+ * @author zhougang
+ */
 @AutoConfiguration
 @MapperScan(value = "com.craftsman4j.framework.dict.core.mapper")
 public class DictAutoConfiguration {

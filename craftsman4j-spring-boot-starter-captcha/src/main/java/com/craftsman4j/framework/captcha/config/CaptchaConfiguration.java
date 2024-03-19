@@ -10,6 +10,9 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 import javax.annotation.Resource;
 
+/**
+ * @author zhougang
+ */
 @AutoConfiguration
 public class CaptchaConfiguration {
 

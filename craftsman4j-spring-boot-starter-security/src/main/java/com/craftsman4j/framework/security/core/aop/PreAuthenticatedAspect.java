@@ -11,6 +11,9 @@ import org.aspectj.lang.annotation.Aspect;
 
 import static com.craftsman4j.framework.common.exception.util.ServiceExceptionUtils.exception;
 
+/**
+ * @author zhougang
+ */
 @Aspect
 @Slf4j
 public class PreAuthenticatedAspect {
