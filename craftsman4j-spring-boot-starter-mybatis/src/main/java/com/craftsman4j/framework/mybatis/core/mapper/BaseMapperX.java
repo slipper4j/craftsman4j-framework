@@ -165,10 +165,16 @@ public interface BaseMapperX<T> extends MPJBaseMapper<T> {
     }
 
     default Boolean updateBatch(Collection<T> entities) {
+        if (CollUtil.isEmpty(entities)) {
+            return false;
+        }
         return Db.updateBatchById(entities);
     }
 
     default Boolean updateBatch(Collection<T> entities, int size) {
+        if (CollUtil.isEmpty(entities)) {
+            return false;
+        }
         return Db.updateBatchById(entities, size);
     }
 
