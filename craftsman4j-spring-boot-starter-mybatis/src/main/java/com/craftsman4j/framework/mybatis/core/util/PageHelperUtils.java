@@ -89,7 +89,6 @@ public class PageHelperUtils {
             if (columnsMap != null && columnsMap.get(field) != null) {
                 stringBuilder.append(columnsMap.get(field));
             } else {
-                // 驼峰转换为下划线
                 stringBuilder.append("`").append(field).append("`");
             }
             stringBuilder.append(" ").append(orderType);
