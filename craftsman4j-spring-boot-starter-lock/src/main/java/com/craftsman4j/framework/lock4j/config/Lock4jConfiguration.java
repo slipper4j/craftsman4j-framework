@@ -10,7 +10,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.annotation.Bean;
 
 @AutoConfiguration(before = LockAutoConfiguration.class)
 @ConditionalOnClass(name = "com.baomidou.lock.annotation.Lock4j")
@@ -23,7 +22,7 @@ public class Lock4jConfiguration implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        Lock4jUtils.setLockTemplate(SpringUtil.getBean(LockTemplate.class));
+        Lock4jUtils.init(SpringUtil.getBean(LockTemplate.class));
     }
 
 }

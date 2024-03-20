@@ -24,7 +24,7 @@ public class Lock4jUtils {
      *
      * @param lockTemplate 锁模板方法
      */
-    public static void setLockTemplate(LockTemplate lockTemplate) {
+    public static void init(LockTemplate lockTemplate) {
         Lock4jUtils.LOCK_TEMPLATE = lockTemplate;
         log.info("[init][初始化 Lock4jUtils 成功]");
     }
