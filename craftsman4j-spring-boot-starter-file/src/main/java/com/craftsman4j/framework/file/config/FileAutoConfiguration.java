@@ -1,9 +1,17 @@
 package com.craftsman4j.framework.file.config;
 
+import com.craftsman4j.framework.file.core.biz.mapper.FileConfigMapper;
+import com.craftsman4j.framework.file.core.biz.mapper.FileMapper;
+import com.craftsman4j.framework.file.core.biz.service.FileConfigService;
+import com.craftsman4j.framework.file.core.biz.service.FileConfigServiceImpl;
+import com.craftsman4j.framework.file.core.biz.service.FileServiceImpl;
 import com.craftsman4j.framework.file.core.client.FileClientFactory;
 import com.craftsman4j.framework.file.core.client.FileClientFactoryImpl;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
+
+import javax.validation.Validator;
 
 /**
  * 文件配置类
@@ -11,6 +19,7 @@ import org.springframework.context.annotation.Bean;
  * @author craftsman4j
  */
 @AutoConfiguration
+@MapperScan(value = "com.craftsman4j.framework.file.core.biz.mapper")
 public class FileAutoConfiguration {
 
     @Bean
@@ -18,4 +27,16 @@ public class FileAutoConfiguration {
         return new FileClientFactoryImpl();
     }
 
+    @Bean
+    public FileConfigServiceImpl dictTypeService(FileClientFactory fileClientFactory,
+                                                 FileConfigMapper fileConfigMapper,
+                                                 Validator validator) {
+        return new FileConfigServiceImpl(fileClientFactory, fileConfigMapper, validator);
+    }
+
+    @Bean
+    public FileServiceImpl dictDataService(FileConfigService fileConfigService,
+                                           FileMapper fileMapper) {
+        return new FileServiceImpl(fileConfigService, fileMapper);
+    }
 }

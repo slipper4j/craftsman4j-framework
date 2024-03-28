@@ -13,7 +13,9 @@ import com.craftsman4j.framework.file.core.utils.FileTypeUtils;
 import com.craftsman4j.framework.file.core.biz.vo.file.FileCreateReqVO;
 import com.craftsman4j.framework.file.core.biz.vo.file.FilePageReqVO;
 import com.craftsman4j.framework.file.core.biz.vo.file.FilePresignedUrlRespVO;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,14 +28,13 @@ import static com.craftsman4j.framework.file.core.biz.enums.FileErrorCodeConstan
  *
  * @author craftsman4j
  */
-@Service
+@RequiredArgsConstructor
+@Slf4j
 public class FileServiceImpl implements FileService {
 
-    @Resource
-    private FileConfigService fileConfigService;
+    private final FileConfigService fileConfigService;
 
-    @Resource
-    private FileMapper fileMapper;
+    private final FileMapper fileMapper;
 
     @Override
     public PageResult<FileDO> getFilePage(FilePageReqVO pageReqVO) {

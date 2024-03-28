@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Bean;
  * @author zhougang
  */
 @AutoConfiguration
-@MapperScan(value = "com.craftsman4j.framework.dict.core.mapper")
+@MapperScan(value = "com.craftsman4j.framework.dict.core.biz.mapper")
 public class DictAutoConfiguration {
 
     @Bean

@@ -19,6 +19,7 @@ import com.craftsman4j.framework.file.core.biz.vo.config.FileConfigSaveReqVO;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +41,7 @@ import static com.craftsman4j.framework.file.core.biz.enums.FileErrorCodeConstan
  *
  * @author craftsman4j
  */
-@Service
+@RequiredArgsConstructor
 @Validated
 @Slf4j
 public class FileConfigServiceImpl implements FileConfigService {
@@ -66,14 +67,11 @@ public class FileConfigServiceImpl implements FileConfigService {
 
             });
 
-    @Resource
-    private FileClientFactory fileClientFactory;
+    private final FileClientFactory fileClientFactory;
 
-    @Resource
-    private FileConfigMapper fileConfigMapper;
+    private final FileConfigMapper fileConfigMapper;
 
-    @Resource
-    private Validator validator;
+    private final Validator validator;
 
     @Override
     public Long createFileConfig(FileConfigSaveReqVO createReqVO) {

@@ -21,7 +21,7 @@ import java.util.Optional;
 @AutoConfiguration
 @EnableScheduling // 开启 Spring 自带的定时任务
 @Slf4j
-@MapperScan(value = "com.craftsman4j.framework.quartz.core.mapper")
+@MapperScan(value = "com.craftsman4j.framework.quartz.core.biz.mapper")
 public class QuartzAutoConfiguration {
 
     @Bean
