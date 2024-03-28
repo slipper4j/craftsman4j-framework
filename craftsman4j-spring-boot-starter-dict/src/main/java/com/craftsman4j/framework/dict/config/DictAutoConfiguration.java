@@ -23,12 +23,12 @@ import org.springframework.context.annotation.Bean;
 @MapperScan(value = "com.craftsman4j.framework.dict.core.biz.mapper")
 public class DictAutoConfiguration {
 
-    @Bean
+    @Bean(name = "com.craftsman4j.framework.dict.core.biz.service.DictTypeServiceImpl")
     public DictTypeServiceImpl dictTypeService(DictTypeMapper dictDataMapper) {
         return new DictTypeServiceImpl(dictDataMapper);
     }
 
-    @Bean
+    @Bean(name = "com.craftsman4j.framework.dict.core.biz.service.DictDataServiceImpl")
     public DictDataServiceImpl dictDataService(DictTypeService dictTypeService,
                                                DictDataMapper dictDataMapper) {
         return new DictDataServiceImpl(dictTypeService, dictDataMapper);

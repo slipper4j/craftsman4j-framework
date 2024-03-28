@@ -24,12 +24,12 @@ import java.util.Optional;
 @MapperScan(value = "com.craftsman4j.framework.quartz.core.biz.mapper")
 public class QuartzAutoConfiguration {
 
-    @Bean
+    @Bean(name = "com.craftsman4j.framework.quartz.core.biz.service.JobServiceImpl")
     public JobServiceImpl jobService(JobMapper jobMapper, SchedulerManager schedulerManager) {
         return new JobServiceImpl(jobMapper, schedulerManager);
     }
 
-    @Bean
+    @Bean(name = "com.craftsman4j.framework.quartz.core.biz.service.JobLogServiceImpl")
     public JobLogServiceImpl jobLogService(JobLogMapper jobLogMapper) {
         return new JobLogServiceImpl(jobLogMapper);
     }

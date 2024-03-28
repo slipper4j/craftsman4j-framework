@@ -27,16 +27,16 @@ public class FileAutoConfiguration {
         return new FileClientFactoryImpl();
     }
 
-    @Bean
-    public FileConfigServiceImpl dictTypeService(FileClientFactory fileClientFactory,
-                                                 FileConfigMapper fileConfigMapper,
-                                                 Validator validator) {
+    @Bean(name = "com.craftsman4j.framework.file.core.biz.service.FileConfigServiceImpl")
+    public FileConfigServiceImpl fileConfigService(FileClientFactory fileClientFactory,
+                                                   FileConfigMapper fileConfigMapper,
+                                                   Validator validator) {
         return new FileConfigServiceImpl(fileClientFactory, fileConfigMapper, validator);
     }
 
-    @Bean
-    public FileServiceImpl dictDataService(FileConfigService fileConfigService,
-                                           FileMapper fileMapper) {
+    @Bean(name = "com.craftsman4j.framework.file.core.biz.service.FileServiceImpl")
+    public FileServiceImpl fileService(FileConfigService fileConfigService,
+                                       FileMapper fileMapper) {
         return new FileServiceImpl(fileConfigService, fileMapper);
     }
 }
