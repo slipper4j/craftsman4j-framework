@@ -10,15 +10,12 @@ import io.minio.http.Method;
 import java.io.ByteArrayInputStream;
 import java.util.concurrent.TimeUnit;
 
-import static com.craftsman4j.framework.file.core.client.s3.S3FileClientConfig.ENDPOINT_ALIYUN;
-import static com.craftsman4j.framework.file.core.client.s3.S3FileClientConfig.ENDPOINT_TENCENT;
-
 /**
  * 基于 S3 协议的文件客户端，实现 MinIO、阿里云、腾讯云、七牛云、华为云等云服务
  * <p>
  * S3 协议的客户端，采用亚马逊提供的 software.amazon.awssdk.s3 库
  *
- * @author craftsman4j
+ * @author 芋道源码
  */
 public class S3FileClient extends AbstractFileClient<S3FileClientConfig> {
 
@@ -76,15 +73,15 @@ public class S3FileClient extends AbstractFileClient<S3FileClientConfig> {
      */
     private String buildRegion() {
         // 阿里云必须有 region，否则会报错
-        if (config.getEndpoint().contains(ENDPOINT_ALIYUN)) {
+        if (config.getEndpoint().contains(S3FileClientConfig.ENDPOINT_ALIYUN)) {
             return StrUtil.subBefore(config.getEndpoint(), '.', false)
                     .replaceAll("-internal", "")// 去除内网 Endpoint 的后缀
                     .replaceAll("https://", "");
         }
         // 腾讯云必须有 region，否则会报错
-        if (config.getEndpoint().contains(ENDPOINT_TENCENT)) {
+        if (config.getEndpoint().contains(S3FileClientConfig.ENDPOINT_TENCENT)) {
             return StrUtil.subAfter(config.getEndpoint(), "cos.", false)
-                    .replaceAll("." + ENDPOINT_TENCENT, ""); // 去除 Endpoint
+                    .replaceAll("." + S3FileClientConfig.ENDPOINT_TENCENT, ""); // 去除 Endpoint
         }
         return null;
     }
