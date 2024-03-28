@@ -1,7 +1,7 @@
 package com.craftsman4j.framework.dict.core.annotations;
 
 import com.craftsman4j.framework.dict.core.jackson.DictSerializer;
-import com.craftsman4j.framework.dict.core.pojo.DictTypeDO;
+import com.craftsman4j.framework.dict.core.biz.pojo.DictTypeDO;
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 

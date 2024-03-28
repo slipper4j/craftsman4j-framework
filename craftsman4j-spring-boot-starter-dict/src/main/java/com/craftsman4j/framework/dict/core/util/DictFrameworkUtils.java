@@ -4,7 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.craftsman4j.framework.common.core.KeyValue;
 import com.craftsman4j.framework.common.util.cache.CacheUtils;
 import com.craftsman4j.framework.dict.core.DictDataApi;
-import com.craftsman4j.framework.dict.core.dto.DictDataRespDTO;
+import com.craftsman4j.framework.dict.core.biz.dto.DictDataRespDTO;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import lombok.SneakyThrows;

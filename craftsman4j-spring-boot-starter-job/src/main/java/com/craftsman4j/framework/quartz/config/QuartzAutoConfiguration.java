@@ -1,10 +1,10 @@
 package com.craftsman4j.framework.quartz.config;
 
-import com.craftsman4j.framework.quartz.core.mapper.JobLogMapper;
-import com.craftsman4j.framework.quartz.core.mapper.JobMapper;
+import com.craftsman4j.framework.quartz.core.biz.mapper.JobLogMapper;
+import com.craftsman4j.framework.quartz.core.biz.mapper.JobMapper;
 import com.craftsman4j.framework.quartz.core.scheduler.SchedulerManager;
-import com.craftsman4j.framework.quartz.core.service.JobLogServiceImpl;
-import com.craftsman4j.framework.quartz.core.service.JobServiceImpl;
+import com.craftsman4j.framework.quartz.core.biz.service.JobLogServiceImpl;
+import com.craftsman4j.framework.quartz.core.biz.service.JobServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.quartz.Scheduler;
