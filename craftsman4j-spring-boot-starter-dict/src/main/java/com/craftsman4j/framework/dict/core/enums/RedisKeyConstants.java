@@ -3,7 +3,7 @@ package com.craftsman4j.framework.dict.core.enums;
 /**
  * System Redis Key 枚举类
  *
- * @author 芋道源码
+ * @author craftsman4j
  */
 public interface RedisKeyConstants {
 
